@@ -9,3 +9,7 @@ A policeman briefs us on the subject: He says that the victim was working for th
 First investigation. You analyse the crime scene and you find the victim’s phone. You write down the numbers. The victim has a perper in his hand. Fin wallet and get the ID card. You find a mysterious metal object (It is a key but you don’t know yet).
 
 The next day: Then the inspector steps in his car drives of and the scene transitions into his office where he is inspecting all the information. secretary comes in after a while 2 bring him coffee and tell him what she found. they go and visit the dead persons relatives who lead him to his lab
+
+
+More info here:
+https://drive.google.com/drive/folders/12LP5qPFR-3ibHgnq7ksZ8RhxedlxClWv?usp=sharing
