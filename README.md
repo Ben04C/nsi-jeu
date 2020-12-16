@@ -1,6 +1,5 @@
 # nsi-jeu
-A pygame project
-The story: Screen is flickering while it says“Flicker, Flicker, Flicker, Flicker, You’re a goner”. A murder in a small alley from a slum. Police is already there. A detective (You) arrives at the crime scene.
+A pygame project The story: Screen is flickering while it says“Flicker, Flicker, Flicker, Flicker, You’re a goner”. A murder in a small alley from a slum. Police is already there. A detective (You) arrives at the crime scene.
 
 Crime scene: In a slum outside a shop, blinds closed with a flickering neon in a dark alley. A small blanket is hiding the body covering everything but the feets are visible . see doodle in brainstorming.
 
@@ -10,6 +9,9 @@ First investigation. You analyse the crime scene and you find the victim’s pho
 
 The next day: Then the inspector steps in his car drives of and the scene transitions into his office where he is inspecting all the information. secretary comes in after a while 2 bring him coffee and tell him what she found. they go and visit the dead persons relatives who lead him to his lab
 
+More info here: https://drive.google.com/drive/folders/12LP5qPFR-3ibHgnq7ksZ8RhxedlxClWv?usp=sharing
 
-More info here:
-https://drive.google.com/drive/folders/12LP5qPFR-3ibHgnq7ksZ8RhxedlxClWv?usp=sharing
+Problemes en ce momment: </br>
+- .blit n'affiche pas d'images, il doit y avoir une erreur. - Je ne penses pas que  c'est le load qui pose probleme car l'icone de la fenetre fonctionne parfaitemet.
+
+- Le texte ne s'affiche pas aussi. (La méthode .blit est aussi utilisée)
