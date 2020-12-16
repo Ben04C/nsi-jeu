@@ -2,8 +2,10 @@ import pygame
 
 # Initialisation
 pygame.init()
+pygame.mixer.init()
 
 # create the window
+
 screen = pygame.display.set_mode((1280,720))
 
 #creating the clock
@@ -12,15 +14,15 @@ message_end_time = 0
 
 #Title and Icon
 pygame.display.set_caption("Cyberpunk style game")
-icon = pygame.image.load("detective-hat.png")
+icon = pygame.image.load("assets/detective-hat.png")
 pygame.display.set_icon(icon)
 
 progress = 0 #Progress is going to be the save state of the game. When a scene is finished there will be progress+=1 and the scene will change with an if progress ==.
 #Assets:
-dialogueFont = pygame.font.Font("fonts/8-BIT WONDER.TTF", 32)
+dialogueFont = pygame.font.Font("assets/fonts/8-BIT WONDER.TTF", 32)
 
 #Characters
-#playerImg = pygame.image.load("detective.png")
+playerImg = pygame.image.load("assets/detective-hat.png")
 playerX = 370
 playerY = 480
 
@@ -29,9 +31,10 @@ PoliceX = 400
 PoliceY = 480
 
 #Backgrounds
-crimeSceneBG = pygame.image.load("backgrounds/First_Scene.png")
+crimeSceneBG = pygame.image.load("assets/backgrounds/First_Scene.png")
 
-
+#sound
+pygame.mixer.music.load("assets/sound/SFX/Neon_light_Buzzing.wav")
 
 keys = pygame.key.get_pressed()
 def player(x, y):
@@ -42,18 +45,27 @@ def player(x, y):
         playerY += 5
 
 
+#dialogues:
+Dialogue1p=["Good evening Detective ","I am sorry to have you come this late but the matter is urgent !"]
+
 
 def cutscene1():
-    for i in range(4):
+    cscene1d=["Flicker", "Flicker", "Flicker", "You're a goner"]
+    pygame.mixer.music.set_volume(0.7)
+    for i in range(4): #Makes the screen blink
+
+        pygame.time.delay(1 * 3000)
         screen.fill((128, 0, 128))
+        pygame.mixer.music.play()
         pygame.display.update()
         screen.fill((0, 0, 0))
         pygame.time.delay(1 * 3000)
         pygame.display.update()
-        dialogue = dialogueFont.render("Testing some text", True, (255, 255, 255))
+        dialogue = dialogueFont.render(cscene1d[i], True, (255, 255, 255))
         screen.blit(dialogue, (0, 0))
-        pygame.time.delay(1 * 3000)
-
+    pygame.mixer.music.load("assets/sound/SFX/small-explosion.wav")
+    pygame.mixer.music.play()
+    pygame.time.delay(1 * 5000)
 
 
 
@@ -79,10 +91,12 @@ while running:
         screen.blit(crimeSceneBG,(0,0))
         screen.blit(icon, (0, 0))
 
-        playerImg = pygame.image.load("detective.png")
+        playerImg = pygame.image.load("assets/detective-hat.png")
+
         screen.blit(playerImg, (300, 400))
-        player(playerX, playerY)
-        print("hello")
+        #player(playerX, playerY)
+        pygame.mixer.music.load("assets/sound/Music/Investigation/[Filename].waw")
+
 
 
 
