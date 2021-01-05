@@ -1,4 +1,5 @@
 import pygame
+from pygame.locals import *
 
 # Initialisation
 pygame.init()
@@ -6,7 +7,7 @@ pygame.mixer.init()
 
 # create the window
 
-screen = pygame.display.set_mode((1280,720))
+screen = pygame.display.set_mode((1280,720), RESIZABLE)
 
 #creating the clock
 message_end_time = 0
@@ -22,7 +23,7 @@ progress = 0 #Progress is going to be the save state of the game. When a scene i
 dialogueFont = pygame.font.Font("assets/fonts/8-BIT WONDER.TTF", 32)
 
 #Characters
-playerImg = pygame.image.load("assets/detective-hat.png")
+playerImg = pygame.image.load("assets/detective-hat.png").convert_alpha()
 playerX = 370
 playerY = 480
 
@@ -31,10 +32,16 @@ PoliceX = 400
 PoliceY = 480
 
 #Backgrounds
-crimeSceneBG = pygame.image.load("assets/backgrounds/First_Scene.png")
+crimeSceneBG = pygame.image.load("assets/backgrounds/First_Scene.png").convert()
 
 #sound
-pygame.mixer.music.load("assets/sound/SFX/Neon_light_Buzzing.wav")
+def m_buzzing():
+    pygame.mixer.music.load("assets/sound/SFX/Neon_light_Buzzing.wav")
+def m_investigation():
+    pygame.mixer.music.load("assets/sound/Music/Investigation/[Filename].waw")
+def m_explosion():
+    pygame.mixer.music.load("assets/sound/SFX/small-explosion.wav")
+
 
 keys = pygame.key.get_pressed()
 def player(x, y):
@@ -51,6 +58,7 @@ Dialogue1p=["Good evening Detective ","I am sorry to have you come this late but
 
 def cutscene1():
     cscene1d=["Flicker", "Flicker", "Flicker", "You're a goner"]
+    m_buzzing()
     pygame.mixer.music.set_volume(0.7)
     for i in range(4): #Makes the screen blink
 
@@ -63,7 +71,7 @@ def cutscene1():
         pygame.display.update()
         dialogue = dialogueFont.render(cscene1d[i], True, (255, 255, 255))
         screen.blit(dialogue, (0, 0))
-    pygame.mixer.music.load("assets/sound/SFX/small-explosion.wav")
+    m_explosion()
     pygame.mixer.music.play()
     pygame.time.delay(1 * 5000)
 
@@ -92,9 +100,12 @@ while running:
         screen.blit(icon, (0, 0))
 
         playerImg = pygame.image.load("assets/detective-hat.png")
+        if event.type == MOUSEBUTTONDOWN and event.button == 3 and event.pos[1] < 100:
+            pass
 
         screen.blit(playerImg, (300, 400))
         #player(playerX, playerY)
+        m_investigation()
         pygame.mixer.music.load("assets/sound/Music/Investigation/[Filename].waw")
 
 
