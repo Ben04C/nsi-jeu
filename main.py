@@ -4,6 +4,7 @@ from pygame.locals import *
 # Initialisation
 pygame.init()
 pygame.mixer.init()
+i=0
 
 # create the window
 
@@ -20,27 +21,52 @@ pygame.display.set_icon(icon)
 
 progress = 0 #Progress is going to be the save state of the game. When a scene is finished there will be progress+=1 and the scene will change with an if progress ==.
 #Assets:
-dialogueFont = pygame.font.Font("assets/fonts/8-BIT WONDER.TTF", 32)
+dialogueFont = pygame.font.Font("assets/fonts/8-BIT WONDER.TTF", 10)
+
+
+
+
 
 #Characters
 playerImg = pygame.image.load("assets/detective-hat.png").convert_alpha()
 playerX = 370
 playerY = 480
 
+
+
+
+
 #PoliceImg = pygame.image.load("police.png")
 PoliceX = 400
 PoliceY = 480
 
+
+
+
+
+
 #Backgrounds
-crimeSceneBG = pygame.image.load("assets/backgrounds/First_Scene.png").convert()
+crimeSceneBG = pygame.image.load("assets/backgrounds/Game_First_Scene_bigger_res.png").convert()
+
+
+#Button:
+button = pygame.image.load("assets/backgrounds/First_Scene.png").convert()
+
+
+
+
 
 #sound
-def m_buzzing():
-    pygame.mixer.music.load("assets/sound/SFX/Neon_light_Buzzing.wav")
-def m_investigation():
-    pygame.mixer.music.load("assets/sound/Music/Investigation/[Filename].waw")
-def m_explosion():
-    pygame.mixer.music.load("assets/sound/SFX/small-explosion.wav")
+#def m_buzzing():
+    #pygame.mixer.music.load("assets/sound/SFX/Neon_light_Buzzing.mp3")
+#def m_investigation():
+    #pygame.mixer.music.load("assets/sound/Music/SFX/Neon_light_Buzzing.mp3")
+#def m_explosion():
+    #pygame.mixer.music.load("assets/sound/SFX/small-explosion.mp3")
+
+
+
+
 
 
 keys = pygame.key.get_pressed()
@@ -52,8 +78,17 @@ def player(x, y):
         playerY += 5
 
 
+
+
+
+
+
 #dialogues:
-Dialogue1p=["Good evening Detective ","I am sorry to have you come this late but the matter is urgent !"]
+Dialogue1p=["Policeman ;I am sorry to have warned you  this late but the matter is urgent !", "some other text"]
+explanation1= dialogueFont.render("Policeman: Good evening Detective, press any key to continue", True, (255, 255, 255))
+
+
+
 
 
 def cutscene1():
@@ -77,37 +112,34 @@ def cutscene1():
 
 
 
-
 #Game loop
 running = True
 while running:
     for event in pygame.event.get(): #checks if cross is clicked.
         if event.type == pygame.QUIT:
+            
             running = False
-
-
-    if progress == 0:
-        #pregame credits
-        # pick a font you have and set its size
-        progress+=1
-
-    if progress == 1: #cutscene 1 with the intro
-        cutscene1()
-        progress += 1
-
-    if progress == 2: #The first interactive screen
+            print("croix")
+            
+    
+    while progress == 0:
         screen.blit(crimeSceneBG,(0,0))
-        screen.blit(icon, (0, 0))
+        #screen.blit(button,(0,0))
+        pygame.display.update()
+        screen.blit(explanation1, (640,360))
+        pygame.display.update()
+        pressed = pygame.key.get_pressed()
+        
+    
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN :
+                toprint= dialogueFont.render("yay works", True, (255, 255, 255))
+                screen.blit(toprint, (0,0))
+                pygame.display.update()
+                i+=1
+                print("click")
+            
+            
+    
 
-        playerImg = pygame.image.load("assets/detective-hat.png")
-        if event.type == MOUSEBUTTONDOWN and event.button == 3 and event.pos[1] < 100:
-            pass
-
-        screen.blit(playerImg, (300, 400))
-        #player(playerX, playerY)
-        m_investigation()
-        pygame.mixer.music.load("assets/sound/Music/Investigation/[Filename].waw")
-
-
-
-
+    
