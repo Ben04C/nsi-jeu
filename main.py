@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 
+#hello world lol
 # Initialisation
 pygame.init()
 pygame.mixer.init()
