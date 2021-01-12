@@ -50,7 +50,7 @@ crimeSceneBG = pygame.image.load("assets/backgrounds/Game_First_Scene_bigger_res
 
 
 #Button:
-button = pygame.image.load("assets/backgrounds/First_Scene.png").convert()
+textbox = pygame.image.load("assets/UI/textbox_full_res.png").convert_alpha()
 
 
 
@@ -117,29 +117,30 @@ running = True
 while running:
     for event in pygame.event.get(): #checks if cross is clicked.
         if event.type == pygame.QUIT:
-            
+
             running = False
             print("croix")
+
+
             
     
-    while progress == 0:
+    if progress == 0:
         screen.blit(crimeSceneBG,(0,0))
-        #screen.blit(button,(0,0))
-        pygame.display.update()
-        screen.blit(explanation1, (640,360))
+        screen.blit(textbox,(640,500) )
+        screen.blit(explanation1, (640,500))
         pygame.display.update()
         pressed = pygame.key.get_pressed()
         
     
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN :
-                toprint= dialogueFont.render("yay works", True, (255, 255, 255))
-                screen.blit(toprint, (0,0))
-                pygame.display.update()
-                i+=1
+                progress+=1
                 print("click")
             
             
-    
-
+    if progress == 1:
+        screen.blit(crimeSceneBG, (0, 0))
+        toprint = dialogueFont.render("yay works", True, (255, 255, 255))
+        screen.blit(toprint, (0, 0))
+        pygame.display.update()
     
