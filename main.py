@@ -165,7 +165,7 @@ while running:
         oftenusedD1()
         toprint = dialogueFont.render("My name is Richard Bright, homocide detective at the  ", True, (255, 255, 255))
         screen.blit(toprint, (250,500))
-        toprint = dialogueFont.render("localprecinct from Taga, Mr. Taga himself called me this", True, (255, 255, 255))
+        toprint = dialogueFont.render("local precinct from Taga, Mr. Taga himself called me this", True, (255, 255, 255))
         screen.blit(toprint, (250, 520))
         toprint = dialogueFont.render("Let me tell you I got a ", True, (255, 255, 255))
         pygame.display.update()
