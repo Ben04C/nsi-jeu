@@ -180,3 +180,11 @@ while running:
         pygame.display.update()
         checkanykey()
 
+    if progress == 4:
+        oftenusedD1()
+        toprint = dialogueFont.render("Policeman :We have already investigated a bit,", True, (255, 255, 255))
+        screen.blit(toprint, (250, 500))
+        toprint = dialogueFont.render("the victim is called ", True, (255, 255, 255))
+        screen.blit(toprint, (250, 520))
+        pygame.display.update()
+        checkanykey()
