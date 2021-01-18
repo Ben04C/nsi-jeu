@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 
+#hello world lol
 # Initialisation
 pygame.init()
 pygame.mixer.init()
@@ -22,17 +23,19 @@ pygame.display.set_icon(icon)
 
 progress = 0 #Progress is going to be the save state of the game. When a scene is finished there will be progress+=1 and the scene will change with an if progress ==.
 #Assets:
-dialogueFont = pygame.font.Font("assets/fonts/EightBitDragon-anqx.ttf", 15)
+dialogueFont = pygame.font.Font("assets/fonts/8-BIT WONDER.TTF", 15)
 
 
 
 
 
 #Characters
-playerImg = pygame.image.load("assets\player\half_bodies/Game_Character_Half_Body_OUTSIDE_LIGHTING_big_res.png").convert_alpha()
+playerImg = pygame.image.load("assets\player\dualogue/Game_Character_Half_Body_OUTSIDE_LIGHTING_big_res.png").convert_alpha()
 playerX = 370
 playerY = 480
-playerDialogue = pygame.image.load("assets\player\half_bodies/Game_Character_Half_Body_OUTSIDE_LIGHTING_big_res.png").convert_alpha()
+playerDialogue = pygame.image.load("assets\player\dualogue/Game_Character_Half_Body_OUTSIDE_LIGHTING_big_res.png").convert_alpha()
+
+
 
 
 
@@ -178,11 +181,3 @@ while running:
         pygame.display.update()
         checkanykey()
 
-    if progress == 4:
-        oftenusedD1()
-        toprint = dialogueFont.render("Policeman :We have already investigated a bit,", True, (255, 255, 255))
-        screen.blit(toprint, (250, 500))
-        toprint = dialogueFont.render("the victim is called ", True, (255, 255, 255))
-        screen.blit(toprint, (250, 520))
-        pygame.display.update()
-        checkanykey()
