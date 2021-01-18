@@ -10,6 +10,7 @@ Afin d'installer pygame faire *pip install pygame*
 <h2>**Guide D'utilisation**</h2>
 Pour lancer le jeu: executer le fichier main.py Voilà c'est tout<br>
 Le code du jeu est compris dans le fichier python avec le nom main.py, afin d'accéder aux fichiers du jeu comme les images ou la musique/son aller dans le dossier assets. Tout y est rangé par catégorie.
+Une fois lancé, une fenêtre apparaitra avec  un court dialogue. Après avoir lu le message un simple click sur n'importe quel touche du clavier permet de passer à la prochaine étape du jeu. Attention, une fois passé à la prochaine étape, il n'est pas possible de retourner en arrière car le jeu est basé sur la memoire du jouer et comment il arrive a convertir les dialoges en indices. Pour terminer le programme il suffit de passer à la dernière étape et cliquer sur le crois en haut à droite.p
 
 <br>
 <br>
