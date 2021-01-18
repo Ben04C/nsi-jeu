@@ -1,4 +1,26 @@
 # nsi-jeu
+
+<h2>**A propos**</h2>
+Ce projet est un petit jeu fait avec python et la bibliothèque pygame.
+
+<h2>**Configuration requise**</h2>
+Ce projet utilise la version python 3.9 et la version 2.0.1 de pygame. <br>
+Afin d'installer pygame faire *pip install pygame*
+
+<h2>**Guide D'utilisation**</h2>
+Pour lancer le jeu: executer le fichier main.py Voilà c'est tout<br>
+Le code du jeu est compris dans le fichier python avec le nom main.py, afin d'accéder aux fichiers du jeu comme les images ou la musique/son aller dans le dossier assets. Tout y est rangé par catégorie.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+old:
+<br>
 A pygame project The story: Screen is flickering while it says“Flicker, Flicker, Flicker, Flicker, You’re a goner”. A murder in a small alley from a slum. Police is already there. A detective (You) arrives at the crime scene.
 
 Crime scene: In a slum outside a shop, blinds closed with a flickering neon in a dark alley. A small blanket is hiding the body covering everything but the feets are visible . see doodle in brainstorming.
