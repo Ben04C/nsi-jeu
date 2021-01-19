@@ -3,7 +3,7 @@ from pygame.locals import *
 
 from game import Game
 
-
+g=0
 g = Game()
 
 while g.running:
@@ -39,11 +39,20 @@ dialogueFont = pygame.font.Font("assets/fonts/EightBitDragon-anqx.ttf", 15)
 
 
 #Characters
-playerImgR = pygame.image.load("assets\player\sprites\detective_idle\spr_detective_idle_0.png").convert_alpha()
-playerImgL = pygame.transform.flip(playerImgR, True, False).convert_alpha()
 playerX = 370
 playerY = 480
 playerDialogue = pygame.image.load("assets\player\half_bodies/Game_Character_Half_Body_OUTSIDE_LIGHTING_big_res.png").convert_alpha()
+
+
+#Sprites
+#Idle
+playerImgR = pygame.image.load("assets\player\sprites\detective_idle\spr_detective_idle_0.png").convert_alpha()
+playerImgL = pygame.transform.flip(playerImgR, True, False).convert_alpha()
+#Walk
+playerWalkR = [pygame.image.load("assets\player\sprites\detective_walk\spr_detective_walk_0.png").convert_alpha(), pygame.image.load("assets\player\sprites\detective_walk\spr_detective_walk_1.png").convert_alpha(), pygame.image.load("assets\player\sprites\detective_walk\spr_detective_walk_2.png").convert_alpha(), pygame.image.load("assets\player\sprites\detective_walk\spr_detective_walk_3.png").convert_alpha()]
+
+playerWalkL = [pygame.transform.flip(playerWalkR[0], True, False).convert_alpha(), pygame.transform.flip(playerWalkR[1], True, False).convert_alpha(), pygame.transform.flip(playerWalkR[2], True, False).convert_alpha(), pygame.transform.flip(playerWalkR[3], True, False).convert_alpha()]
+
 
 
 
@@ -197,21 +206,28 @@ while running:
         
         
     while progress== 5:
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_RIGHT]:
+                playerX=playerX+1
+                walking=True
+        if keys[pygame.K_LEFT]:
+                playerX=playerX-1
+                walking=True
+        
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 print("hello")
                 if event.key == K_RIGHT:
-                    playerX+=10
                     walkingRight=True
-                    print("right")
                 if event.key == K_LEFT:
-                    playerX=playerX-10
-                    print("left")
-                    print(playerX)
                     walkingRight=False
         screen.blit(crimeSceneBG, (0, 0))
+        if playerX<=0:
+            playerX = 1
+        if playerX>=1150:
+            playerX=1149
         if walkingRight == True:
-            screen.blit(playerImgR,(playerX, 350))  
+            screen.blit(playerImgR,(playerX, 350))
             pygame.display.update()
         else:
             screen.blit(playerImgL,(playerX, 350))  
