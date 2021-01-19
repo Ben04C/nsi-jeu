@@ -5,12 +5,13 @@ Ce projet est un petit jeu fait avec python et la bibliothèque pygame.
 
 <h2>**Configuration requise**</h2>
 Ce projet utilise la version python 3.9 et la version 2.0.1 de pygame. <br>
-Afin d'installer pygame faire *pip install pygame*
+Afin d'installer pygame faire **pip install pygame**
 
 <h2>**Guide D'utilisation**</h2>
-Pour lancer le jeu: executer le fichier main.py Voilà c'est tout<br>
-Le code du jeu est compris dans le fichier python avec le nom main.py, afin d'accéder aux fichiers du jeu comme les images ou la musique/son aller dans le dossier assets. Tout y est rangé par catégorie.
-(pour l'instant le menu marche pas)Une fois lancé, une fenêtre apparaitra avec  un court dialogue. Après avoir lu le message un simple click sur n'importe quel touche du clavier permet de passer à la prochaine étape du jeu. Attention, une fois passé à la prochaine étape, il n'est pas possible de retourner en arrière car le jeu est basé sur la memoire du jouer et comment il arrive a convertir les dialoges en indices. Pour terminer le programme il suffit de passer à la dernière étape et cliquer sur le crois en haut à droite.p
+<p>Pour lancer le jeu: executer le fichier main.py Un menu va apparaitre. Comme il n'est pas encore terminé il faut cliquer sur la croix. Le jeu lui-même va apparaitre. Il y aura un bref dialogue. Une fois le dialogue terminé il sera possible de se déplacer avec les touches doite et gauche du clavier.</p><br>
+<p>Le code du jeu est compris dans le fichier python main.py, le code du menu est compris dans game.py et menu.py. Afin d'accéder aux fichiers du jeu comme les images ou la musique/son aller dans le dossier assets. Tout y est rangé par catégorie.
+  <br>
+Une fois lancé, une fenêtre apparaitra avec  un court dialogue. Après avoir lu le message un simple click sur n'importe quel touche du clavier permet de passer à la prochaine étape du jeu. Attention, une fois passé à la prochaine étape, il n'est pas possible de retourner en arrière car le jeu est basé sur la memoire du jouer et comment il arrive a convertir les dialoges en indices. Pour terminer le programme il suffit de passer à la dernière étape et cliquer sur la crois en haut à droite.</p>
 
 <br>
 <br>
