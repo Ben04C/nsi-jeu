@@ -15,6 +15,7 @@ pygame.init()
 pygame.mixer.init()
 i=0
 progress=0
+walkingRight=True
 
 # create the window
 
@@ -38,7 +39,8 @@ dialogueFont = pygame.font.Font("assets/fonts/EightBitDragon-anqx.ttf", 15)
 
 
 #Characters
-playerImg = pygame.image.load("assets\player\sprites\detective_idle\spr_detective_idle_0.png").convert_alpha()
+playerImgR = pygame.image.load("assets\player\sprites\detective_idle\spr_detective_idle_0.png").convert_alpha()
+playerImgL = pygame.transform.flip(playerImgR, True, False).convert_alpha()
 playerX = 370
 playerY = 480
 playerDialogue = pygame.image.load("assets\player\half_bodies/Game_Character_Half_Body_OUTSIDE_LIGHTING_big_res.png").convert_alpha()
@@ -79,14 +81,6 @@ textbox = pygame.image.load("assets/UI/textbox_full_res.png").convert_alpha()
 
 
 keys = pygame.key.get_pressed()
-def player(x, y):
-    screen.blit(playerImg, (x, y))
-    if keys[pygame.K_RIGHT]:
-        global playerX
-        playerX += 5
-    if keys[pygame.K_LEFT]:
-        global playerY
-        playerY += 5
 
 
 
@@ -202,16 +196,25 @@ while running:
         
         
         
-    if progress== 5:
+    while progress== 5:
         for event in pygame.event.get():
-            if event.type == pygame.K_RIGHT:
-                playerx+=5
-                print("right")
-            if event.type == pygame.K_LEFT:
-                playerx-=5
-                print("left")
+            if event.type == pygame.KEYDOWN:
+                print("hello")
+                if event.key == K_RIGHT:
+                    playerX+=10
+                    walkingRight=True
+                    print("right")
+                if event.key == K_LEFT:
+                    playerX=playerX-10
+                    print("left")
+                    print(playerX)
+                    walkingRight=False
         screen.blit(crimeSceneBG, (0, 0))
-        screen.blit(playerImg,(playerX, 400))  
-        pygame.display.update()
+        if walkingRight == True:
+            screen.blit(playerImgR,(playerX, 350))  
+            pygame.display.update()
+        else:
+            screen.blit(playerImgL,(playerX, 350))  
+            pygame.display.update()
         
             
