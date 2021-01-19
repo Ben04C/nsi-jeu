@@ -18,7 +18,7 @@ progress=0
 
 # create the window
 
-screen = pygame.display.set_mode((1280,720), RESIZABLE)
+screen = pygame.display.set_mode((1280,720))
 
 #creating the clock
 message_end_time = 0
@@ -38,7 +38,7 @@ dialogueFont = pygame.font.Font("assets/fonts/EightBitDragon-anqx.ttf", 15)
 
 
 #Characters
-playerImg = pygame.image.load("assets\player\half_bodies/Game_Character_Half_Body_OUTSIDE_LIGHTING_big_res.png").convert_alpha()
+playerImg = pygame.image.load("assets\player\sprites\detective_idle\spr_detective_idle_0.png").convert_alpha()
 playerX = 370
 playerY = 480
 playerDialogue = pygame.image.load("assets\player\half_bodies/Game_Character_Half_Body_OUTSIDE_LIGHTING_big_res.png").convert_alpha()
@@ -191,7 +191,27 @@ while running:
         oftenusedD1()
         toprint = dialogueFont.render("Policeman :We have already investigated a bit,", True, (255, 255, 255))
         screen.blit(toprint, (250, 500))
-        toprint = dialogueFont.render("the victim is called ", True, (255, 255, 255))
+        toprint = dialogueFont.render("BECAUSE WE HAD BUDGET CUTS LETS GET TO THE ", True, (255, 255, 255))
         screen.blit(toprint, (250, 520))
+        toprint = dialogueFont.render("INVESTIGATION", True, (255, 255, 255))
+        screen.blit(toprint, (250, 540))
         pygame.display.update()
         checkanykey()
+        
+        
+        
+        
+        
+    if progress== 5:
+        for event in pygame.event.get():
+            if event.type == pygame.K_RIGHT:
+                playerx+=5
+                print("right")
+            if event.type == pygame.K_LEFT:
+                playerx-=5
+                print("left")
+        screen.blit(crimeSceneBG, (0, 0))
+        screen.blit(playerImg,(playerX, 400))  
+        pygame.display.update()
+        
+            
