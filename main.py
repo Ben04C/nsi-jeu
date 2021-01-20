@@ -16,6 +16,9 @@ pygame.mixer.init()
 i=0
 progress=0
 walkingRight=True
+#Clock for FPS
+clock = pygame.time.Clock()
+
 
 # create the window
 
@@ -146,6 +149,7 @@ while running:
 
             running = False
             print("croix")
+    clock.tick(30) #FPS
 
 
             
@@ -200,14 +204,16 @@ while running:
         screen.blit(toprint, (250, 540))
         pygame.display.update()
         checkanykey()
-        
-        
-        
-        
+
+
+
         
     while progress== 5:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RIGHT]:
+            #for counter in range(len(playerWalkR)):
+                #player = pygame.image.load(playerWalkR[int(counter)])
+                #counter = counter + 1
                 playerX=playerX+1
                 walking=True
         if keys[pygame.K_LEFT]:
@@ -227,10 +233,14 @@ while running:
         if playerX>=1150:
             playerX=1149
         if walkingRight == True:
-            screen.blit(playerImgR,(playerX, 350))
-            pygame.display.update()
+            for counter in range(len(playerWalkR)):
+                walkR = playerWalkR[int(counter)]
+                counter = counter + 1
+                pygame.display.update()
+                screen.blit(walkR,(playerX, 350))
+
+
         else:
-            screen.blit(playerImgL,(playerX, 350))  
+            screen.blit(playerImgL,(playerX, 350))
             pygame.display.update()
         
-            
