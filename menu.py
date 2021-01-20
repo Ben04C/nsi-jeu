@@ -11,7 +11,7 @@ class Menu():
         self.offset = - 100  # making sure cursor doesnt have to be on top of the text
 
     def draw_cursor(self):
-        self.game.draw_text('*', 15, self.cursor_rect.x, self.cursor_rect.y)
+        self.game.draw_text('*', 15, self.cursor_rect.midtop[0], self.cursor_rect.midtop[1])
 
     def blit_screen(self):
         self.game.window.blit(self.game.display, (0, 0))
@@ -23,7 +23,7 @@ class MainMenu(Menu):  # making sure we can use the variables.
 
     def __init__(self, game):
         Menu.__init__(self, game)
-        self.state = "start"  # when game starts main cursor points at start game
+        self.state = "Start"  # when game starts main cursor points at start game
         self.startx, self.starty = self.mid_w, self.mid_h + 30  # position of start game text
         self.optionsx, self.optionsy = self.mid_w, self.mid_h + 50  # position of options text
         self.creditsx, self.creditsy = self.mid_w, self.mid_h + 70  # position of credits text
@@ -41,6 +41,7 @@ class MainMenu(Menu):  # making sure we can use the variables.
             self.game.draw_text('Options', 20, self.optionsx, self.optionsy)
             self.game.draw_text('Credits', 20, self.creditsx, self.creditsy)
             self.draw_cursor()
+            self.check_input()
             self.blit_screen()
 
     def move_cursor(self):  # function that makes sure the cursor moves correctly (down and up)
@@ -52,14 +53,14 @@ class MainMenu(Menu):  # making sure we can use the variables.
                 self.cursor_rect.midtop = (self.creditsx + self.offset, self.creditsy)
                 self.state = 'Credits'
             elif self.state == 'Credits':
-                self.cursor_rect.midtop = [self.startx + self.offset, self.starty]
-                self.state = 'start'
+                self.cursor_rect.midtop = (self.startx + self.offset, self.starty)
+                self.state = 'Start'
         elif self.game.UP_KEY:  # up
             if self.state == 'Start':
                 self.cursor_rect.midtop = (self.creditsx + self.offset, self.creditsy)
                 self.state = 'Credits'
             elif self.state == 'Options':
-                self.cursor_rect.midtop = [self.startx + self.offset, self.starty]
+                self.cursor_rect.midtop = (self.startx + self.offset, self.starty)
                 self.state = 'Start'
             elif self.state == 'Credits':
                 self.cursor_rect.midtop = (self.optionsx + self.offset, self.optionsy)

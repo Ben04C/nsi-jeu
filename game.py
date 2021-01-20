@@ -1,7 +1,8 @@
 import pygame
 # CODE FOR THE PRE GAME MENU
+import time
 from menu import MainMenu
-
+from pygame.locals import *
 
 class Game():
     def __init__(self):        #defining all the properties of the game menu
@@ -21,10 +22,13 @@ class Game():
             if self.START_KEY:
                 self.playing = False
             self.display.fill(self.BLACK)  # set background to black
-            self.draw_text("thanks for playing", 20, self.DISPLAY_W/2, self.DISPLAY_H/2)       #display text in centre of screen
+            self.draw_text("Loading...", 50, self.DISPLAY_W/2, self.DISPLAY_H/2)       #display text in centre of screen
+
             self.window.blit(self.display, (0, 0))      #helps locate the rectangle on the screen
             pygame.display.update()  # physically moves the image on the computer screen
             self.reset_keys()       #checks if the player is still holding down the key
+            time.sleep(3)
+            self.running, self.playing = False, False
 
 
     def check_events(self):
@@ -32,16 +36,20 @@ class Game():
             if event.type == pygame.QUIT:       #checks whether to end program or not
                 self.running, self.playing = False, False
                 self.curr_menu.run_display = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:  # check if player has pressed the enter key
+            if event.type == KEYDOWN:
+                if event.key == K_RETURN:  # check if player has pressed the enter key
+                    print("aaaaaaaaaaaaa")
                     self.START_KEY = True
-            if event.type == pygame.K_BACKSPACE:  # check if player has pressed the backspace key
-                self.BACK_KEY = True
-            if event.type == pygame.K_DOWN:  # check if player has pressed the down key
-                self.DOWN_KEY = True
-            if event.type == pygame.K_UP:  # check if player has pressed the up key
-                self.UP_KEY = True
-
+                    print("aaaaaaaaaaaaa")
+                if event.key == K_BACKSPACE:  # check if player has pressed the backspace key
+                    self.BACK_KEY = True
+                    print("bbbbbbbbbbbbb")
+                if event.key == K_DOWN:  # check if player has pressed the down key
+                    self.DOWN_KEY = True
+                    print("ccccccccccccc")
+                if event.key == K_UP:  # check if player has pressed the up key
+                    self.UP_KEY = True
+                    print("ddddddddddddd")
 
     def reset_keys(self):
         self.START_KEY, self.BACK_KEY, self.DOWN_KEY, self.UP_KEY = False, False, False, False
