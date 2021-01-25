@@ -25,8 +25,8 @@ class MainMenu(Menu):  # making sure we can use the variables.
         Menu.__init__(self, game)
         self.state = "Start"  # when game starts main cursor points at start game
         self.startx, self.starty = self.mid_w, self.mid_h + 30  # position of start game text
-        self.optionsx, self.optionsy = self.mid_w, self.mid_h + 50  # position of options text
-        self.creditsx, self.creditsy = self.mid_w, self.mid_h + 70  # position of credits text
+        self.optionsx, self.optionsy = self.mid_w, self.mid_h + 70  # position of options text
+        self.creditsx, self.creditsy = self.mid_w, self.mid_h + 50  # position of credits text
         self.cursor_rect.midtop = (self.startx + self.offset, self.starty)  # starting position of the cursor
 
     def display_menu(self):  # displays or doesnt display the menu

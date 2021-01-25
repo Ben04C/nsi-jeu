@@ -1,4 +1,6 @@
+import time
 import pygame
+
 from pygame.locals import *
 
 from game import Game
@@ -56,9 +58,6 @@ playerImgL = pygame.transform.flip(playerImgR, True, False).convert_alpha()
 playerWalkR = [pygame.image.load("assets\player\sprites\detective_walk\spr_detective_walk_0.png").convert_alpha(), pygame.image.load("assets\player\sprites\detective_walk\spr_detective_walk_1.png").convert_alpha(), pygame.image.load("assets\player\sprites\detective_walk\spr_detective_walk_2.png").convert_alpha(), pygame.image.load("assets\player\sprites\detective_walk\spr_detective_walk_3.png").convert_alpha()]
 
 playerWalkL = [pygame.transform.flip(playerWalkR[0], True, False).convert_alpha(), pygame.transform.flip(playerWalkR[1], True, False).convert_alpha(), pygame.transform.flip(playerWalkR[2], True, False).convert_alpha(), pygame.transform.flip(playerWalkR[3], True, False).convert_alpha()]
-
-
-
 
 #PoliceImg = pygame.image.load("police.png")
 PoliceX = 400
@@ -223,6 +222,7 @@ while running:
                 j=0
                 animateWalking = True
 
+
         if keys[pygame.K_LEFT]:
             playerX=playerX-1
             walking=True
@@ -251,11 +251,14 @@ while running:
                     walkR = playerWalkR[int(counter)]
                     counter = counter + 1
                     pygame.display.update()
-                    screen.blit(walkR,(playerX, 350))
+                    screen.blit(walkR, (playerX, 350))
+                    time.sleep(0.001)
+
             else:
                 for counter in range(len(playerWalkL)):
                     walkL = playerWalkL[int(counter)]
                     counter = counter + 1
+                    time.sleep(0.001)
                     pygame.display.update()
                     screen.blit(walkL,(playerX, 350))
 
