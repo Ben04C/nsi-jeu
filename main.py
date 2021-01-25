@@ -3,8 +3,9 @@ from pygame.locals import *
 
 from game import Game
 
-g=0
+j=0
 g = Game()
+animateWalking = False
 
 while g.running:
     g.curr_menu.display_menu()
@@ -179,7 +180,7 @@ while running:
         oftenusedD1()
         toprint = dialogueFont.render("My name is Richard Bright, homocide detective at the  ", True, (255, 255, 255))
         screen.blit(toprint, (250,500))
-        toprint = dialogueFont.render("local precinct from Taga, Mr. Taga himself called me this", True, (255, 255, 255))
+        toprint = dialogueFont.render("local precinct from Taga, Our great leader Mr. Taga himself called me", True, (255, 255, 255))
         screen.blit(toprint, (250, 520))
         toprint = dialogueFont.render("Let me tell you I got a ", True, (255, 255, 255))
         pygame.display.update()
@@ -209,16 +210,26 @@ while running:
 
         
     while progress== 5:
+        animateWalking = False
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RIGHT]:
             #for counter in range(len(playerWalkR)):
                 #player = pygame.image.load(playerWalkR[int(counter)])
                 #counter = counter + 1
-                playerX=playerX+1
-                walking=True
+            playerX=playerX+1
+            walking=True
+            j+=1
+            if j<=4:
+                j=0
+                animateWalking = True
+
         if keys[pygame.K_LEFT]:
-                playerX=playerX-1
-                walking=True
+            playerX=playerX-1
+            walking=True
+            j += 1
+            if j <= 4:
+                j = 0
+                animateWalking = True
         
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
@@ -232,7 +243,7 @@ while running:
             playerX = 1
         if playerX>=1150:
             playerX=1149
-        if walkingRight == True:
+        if animateWalking == True:
             for counter in range(len(playerWalkR)):
                 walkR = playerWalkR[int(counter)]
                 counter = counter + 1
