@@ -243,15 +243,27 @@ while running:
             playerX = 1
         if playerX>=1150:
             playerX=1149
+
+
         if animateWalking == True:
-            for counter in range(len(playerWalkR)):
-                walkR = playerWalkR[int(counter)]
-                counter = counter + 1
-                pygame.display.update()
-                screen.blit(walkR,(playerX, 350))
+            if walkingRight==True:
+                for counter in range(len(playerWalkR)):
+                    walkR = playerWalkR[int(counter)]
+                    counter = counter + 1
+                    pygame.display.update()
+                    screen.blit(walkR,(playerX, 350))
+            else:
+                for counter in range(len(playerWalkL)):
+                    walkL = playerWalkL[int(counter)]
+                    counter = counter + 1
+                    pygame.display.update()
+                    screen.blit(walkL,(playerX, 350))
 
 
         else:
-            screen.blit(playerImgL,(playerX, 350))
-            pygame.display.update()
-        
+            if walkingRight==False:
+                screen.blit(playerImgL,(playerX, 350))
+                pygame.display.update()
+            else:
+                screen.blit(playerImgR, (playerX, 350))
+                pygame.display.update()
