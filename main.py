@@ -108,7 +108,7 @@ explanation1= dialogueFont.render("Policeman: Good evening Detective, press any 
 
 
 
-def cutscene1():
+def cutscene1():# This cutscene is finally not used for now. We keep it just in case we have some more time.
     cscene1d=["Flicker", "Flicker", "Flicker", "You're a goner"]
     m_buzzing()
     pygame.mixer.music.set_volume(0.7)
@@ -127,14 +127,14 @@ def cutscene1():
     pygame.mixer.music.play()
     pygame.time.delay(1 * 5000)
 
-def oftenusedD1():
+def oftenusedD1(): #This is a function that executes the lines of code that are often used in the first dialogue.
     screen.blit(crimeSceneBG, (0, 0))
     screen.blit(playerDialogue, (0, 0))
     screen.blit(textbox, (200, 450))
 
 
 
-def checkanykey():
+def checkanykey(): #This function checks if any key is pressed on the keyboard.
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             global progress
@@ -157,18 +157,17 @@ while running:
     if progress == 0:
         checkAnyKey=True
         oftenusedD1()
-        screen.blit(explanation1, (250,500))
+        screen.blit(explanation1, (250,500))#écrit le premier texte visible à l'écran
         pygame.display.update()
-        pressed = pygame.key.get_pressed()
-        checkanykey()
+        checkanykey()#appele la fonction checkanykey() qui permet de vérifier si une touche du clavier est cliquée.
 
             
             
     if progress == 1:
         oftenusedD1()
-        toprint = dialogueFont.render("Huf... Puff..., Huf..., Puff. Palms sweaty, this case seems", True, (255, 255, 255))
-        screen.blit(toprint, (250,500))
-        toprint = dialogueFont.render("to be big. AND Why is it always me that has to be called ", True, (255, 255, 255))
+        toprint = dialogueFont.render("Huf... Puff..., Huf..., Puff. Palms sweaty, this case seems", True, (255, 255, 255))#Ceci sont les paramètres du texte à afficher
+        screen.blit(toprint, (250,500))#Ceci affiche le texte
+        toprint = dialogueFont.render("to be big. AND Why is it always me that has to be called ", True, (255, 255, 255))#Une autre ligne
         screen.blit(toprint, (250, 520))
         toprint = dialogueFont.render("upon at 2am.", True, (255, 255, 255))
         screen.blit(toprint, (250, 540))
@@ -208,14 +207,12 @@ while running:
 
 
         
-    while progress== 5:
-        animateWalking = False
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_RIGHT]:
-            #for counter in range(len(playerWalkR)):
-                #player = pygame.image.load(playerWalkR[int(counter)])
-                #counter = counter + 1
-            playerX=playerX+1
+    if progress== 5:#phase d'enquete
+        animateWalking = False #permet de dire que l'on de veut pas animer le joueur.
+
+        keys = pygame.key.get_pressed()#on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
+
+        if keys[pygame.K_RIGHT]:#Si la valeur de la clé K_RIGHT est vraie:
             walking=True
             j+=1
             if j<=4:
@@ -224,16 +221,15 @@ while running:
 
 
         if keys[pygame.K_LEFT]:
-            playerX=playerX-1
+
             walking=True
-            j += 1
+            j += 1 # la variable temporaire j permet de voir si touche est maintenue pendant assez longtemps pour lancer une animation
             if j <= 4:
                 j = 0
                 animateWalking = True
         
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
-                print("hello")
                 if event.key == K_RIGHT:
                     walkingRight=True
                 if event.key == K_LEFT:
@@ -250,17 +246,21 @@ while running:
                 for counter in range(len(playerWalkR)):
                     walkR = playerWalkR[int(counter)]
                     counter = counter + 1
-                    pygame.display.update()
+                    screen.blit(crimeSceneBG, (0, 0))
+                    playerX = playerX + 40
                     screen.blit(walkR, (playerX, 350))
-                    time.sleep(0.001)
+                    pygame.display.update()
+                    time.sleep(0.2)
 
             else:
                 for counter in range(len(playerWalkL)):
                     walkL = playerWalkL[int(counter)]
                     counter = counter + 1
-                    time.sleep(0.001)
+                    screen.blit(crimeSceneBG, (0, 0))
+                    playerX = playerX - 40
+                    screen.blit(walkL, (playerX, 350))
                     pygame.display.update()
-                    screen.blit(walkL,(playerX, 350))
+                    time.sleep(0.2)
 
 
         else:
