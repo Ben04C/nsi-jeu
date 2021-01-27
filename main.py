@@ -11,7 +11,7 @@ animateWalking = False
 
 while g.running:
     g.curr_menu.display_menu()
-    g.game_loop()       #opens menu
+    g.game_loop() #opens menu
 
 # Initialisation
 pygame.init()
@@ -54,6 +54,7 @@ playerDialogue = pygame.image.load("assets\player\half_bodies/Game_Character_Hal
 playerImgR = pygame.image.load("assets\player\sprites\detective_idle\spr_detective_idle_0.png").convert_alpha()
 playerImgL = pygame.transform.flip(playerImgR, True, False).convert_alpha()
 #Walk
+#liste contenant les iamges du joueur afin de faire l'animation
 playerWalkR = [pygame.image.load("assets\player\sprites\detective_walk\spr_detective_walk_0.png").convert_alpha(), pygame.image.load("assets\player\sprites\detective_walk\spr_detective_walk_1.png").convert_alpha(), pygame.image.load("assets\player\sprites\detective_walk\spr_detective_walk_2.png").convert_alpha(), pygame.image.load("assets\player\sprites\detective_walk\spr_detective_walk_3.png").convert_alpha()]
 
 playerWalkL = [pygame.transform.flip(playerWalkR[0], True, False).convert_alpha(), pygame.transform.flip(playerWalkR[1], True, False).convert_alpha(), pygame.transform.flip(playerWalkR[2], True, False).convert_alpha(), pygame.transform.flip(playerWalkR[3], True, False).convert_alpha()]
@@ -109,7 +110,6 @@ explanation1= dialogueFont.render("Policeman: Good evening Detective, press any 
 
 def cutscene1():# This cutscene is finally not used for now. We keep it just in case we have some more time.
     cscene1d=["Flicker", "Flicker", "Flicker", "You're a goner"]
-    m_buzzing()
     pygame.mixer.music.set_volume(0.7)
     for i in range(4): #Makes the screen blink
 
@@ -139,6 +139,50 @@ def checkanykey(): #This function checks if any key is pressed on the keyboard.
             global progress
             progress += 1
             print("click")
+
+def boundaries(): #teleports the player back into the game boundaries if he tries to get out
+    global playerX
+    if playerX <= 0:
+        playerX = 1
+    if playerX >= 1150:
+        playerX = 1149
+
+def walking_function():#vérifie si le joueur est en train de marcher et dans quelle dirrection
+    global animateWalking
+    global j
+    global walkingRight
+    animateWalking = False  # permet de dire que l'on de veut pas animer le joueur.
+
+    keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
+
+    if keys[pygame.K_RIGHT]:  # Si la valeur de la clé K_RIGHT est vraie:
+
+        j += 1
+        if j <= 4:
+            j = 0
+            animateWalking = True
+
+    if keys[pygame.K_LEFT]:
+
+        j += 1  # la variable temporaire j permet de voir si touche est maintenue pendant assez longtemps pour lancer une animation
+        if j <= 4:
+            j = 0
+            animateWalking = True
+
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == K_RIGHT:
+                walkingRight = True
+            if event.key == K_LEFT:
+                walkingRight = False
+    screen.blit(crimeSceneBG, (0, 0))
+
+
+
+
+
+
+
 
 #Game loop
 running = True
@@ -207,39 +251,7 @@ while running:
 
         
     if progress== 5:#phase d'enquete
-        animateWalking = False #permet de dire que l'on de veut pas animer le joueur.
-
-        keys = pygame.key.get_pressed()#on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
-
-        if keys[pygame.K_RIGHT]:#Si la valeur de la clé K_RIGHT est vraie:
-            walking=True
-            j+=1
-            if j<=4:
-                j=0
-                animateWalking = True
-
-
-        if keys[pygame.K_LEFT]:
-
-            walking=True
-            j += 1 # la variable temporaire j permet de voir si touche est maintenue pendant assez longtemps pour lancer une animation
-            if j <= 4:
-                j = 0
-                animateWalking = True
-        
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == K_RIGHT:
-                    walkingRight=True
-                if event.key == K_LEFT:
-                    walkingRight=False
-        screen.blit(crimeSceneBG, (0, 0))
-        if playerX<=0:
-            playerX = 1
-        if playerX>=1150:
-            playerX=1149
-
-
+        walking_function()
         if animateWalking == True:
             if walkingRight==True:
                 for counter in range(len(playerWalkR)):
@@ -247,6 +259,7 @@ while running:
                     counter = counter + 1
                     screen.blit(crimeSceneBG, (0, 0))
                     playerX = playerX + 40
+                    boundaries()
                     screen.blit(walkR, (playerX, 350))
                     pygame.display.update()
                     time.sleep(0.2)
@@ -257,6 +270,7 @@ while running:
                     counter = counter + 1
                     screen.blit(crimeSceneBG, (0, 0))
                     playerX = playerX - 40
+                    boundaries()
                     screen.blit(walkL, (playerX, 350))
                     pygame.display.update()
                     time.sleep(0.2)
