@@ -17,7 +17,6 @@ while g.running:
 pygame.init()
 pygame.mixer.init()
 i=0
-progress=0
 walkingRight=True
 #Clock for FPS
 clock = pygame.time.Clock()

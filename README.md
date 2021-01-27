@@ -13,9 +13,19 @@ Afin d'installer pygame faire **pip install pygame**
   <br>
 Une fois lancé,le menu apparaitra, il est possible de bouger le "cursor" (la petite etoile a gauche du texte) avec les fleches de haut et de bas. Par contre, pour le moment on peut seulement lance le jeux en cliquant sure la touche d'entree sur le clavier qui fera en sorte que une fenêtre apparaitra avec  un court dialogue. Après avoir lu le message un simple click sur n'importe quel touche du clavier permet de passer à la prochaine étape du jeu. Attention, une fois passé à la prochaine étape, il n'est pas possible de retourner en arrière car le jeu est basé sur la memoire du jouer et comment il arrive a convertir les dialoges en indices. Pour terminer le programme il suffit de passer à la dernière étape et cliquer sur la crois en haut à droite.</p>
 
+
+<h2>**QUESTIONS: Faire le point sur les difficultés rencontrées**</h2>
+<h3>Quelles sont celles qui ont été surmontées ?</h3>
+<p>L’équipe a commencé à travailler ensemble sur un projet qui crashait au bout de quelques secondes d'exécution. La très grande majorité du code (qui était dans la boucle while running) à été supprimé. Maintenant il est possible d’avoir des phases de  dialogues et d'enquête. On vise une fin du jeu vers la fin de la première enquête et dialogue.(l’histoire du jeu pourrait continuer indéfiniment et donc le développement aussi) </p>
 <br>
+<h3>Quelles sont celles qu'il faut absolument régler au plus vite ?</h3>
+<p>Il faut créer une partie interactive où l'on peut examiner les objets. Une bulle avec écrit “press e to examine” se montrera et on pourra interagir avec l’objet afin de faire avancer l'enquête. Il faudrait aussi réussir à trouver une histoire afin d’avoir un objectif en tête quand on insère des indices. De plus, il y a encore un peu de graphisme qui est requis afin de dessiner les indices et les autres personnages. Enfin, il faudrait que le menu soit complètement  fonctionnel. Pour l’instant seule l’option start game fonctionne. L’idée d’un système de mot de passe qui permet au joueur de revenir à son point à été discutée. Un système de sauvegarde automatique est aussi envisagé.</p>
 <br>
-<br>
+<h3>Quelles sont celles qu'on aura pas le temps de surmonter et qu'est-ce que cela implique comme évolution sur le projet final ?</h3>
+<p>On voulait implémenter un point and click avec la souris où on peut clicker sur un objet et on peut intéragir avec (le ramasser, l’utiliser si c’est possible…), mais on a décidé de ne pas le faire car ça allait prendre trop de temps. A la place, on doit clicker sur la touche E (référence aux jeux de valve) pour intéragir avec un objet lorsqu’on est assez proche, ce qui devrait être plus facile à coder.
+On voulait aussi créer des nouvelles scènes mais ça va prendre du temps à dessiner donc pour l’instant on garde une seule scène.
+On veut aussi ajouter des effets sons et de la musique mais on est pas sûrs d’avoir le temps de les faire.
+</p>
 <br>
 <br>
 <br>
