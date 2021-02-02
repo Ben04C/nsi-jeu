@@ -1,7 +1,7 @@
 import pygame
 # CODE FOR THE PRE GAME MENU
 import time
-from menu import MainMenu
+from menu import *
 from pygame.locals import *
 
 class Game():
@@ -14,7 +14,10 @@ class Game():
         self.window = pygame.display.set_mode(((self.DISPLAY_W, self.DISPLAY_H)))       #choosing to display dimensions
         self.font_name = pygame.font.get_default_font()     #Choosing the font
         self.BLACK, self.WHITE = (0, 0, 0,), (255, 255, 255)        #defining the colours black and white
-        self.curr_menu = MainMenu(self)
+        self.main_menu = MainMenu(self)
+        self.options = OptionsMenu(self)
+        self.credits = CreditsMenu(self)
+        self.curr_menu = self.main_menu
 
     def game_loop(self):        #defining the loop that displays the menu
         while self.playing:
