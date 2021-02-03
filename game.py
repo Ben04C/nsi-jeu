@@ -4,12 +4,14 @@ import time
 from menu import *
 from pygame.locals import *
 
+
 class Game():
     def __init__(self):        #defining all the properties of the game menu
         pygame.init()
         self.running, self.playing = True, False        #check if game is being run and if user is playing
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY, = False, False, False, False     #defining all the keys used in the menu
         self.DISPLAY_W, self.DISPLAY_H = 1280, 720      #setting the dimensions of the menu
+        screen = pygame.display.set_mode((1280,720))
         self.display = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H))         #giving dimensions a name
         self.window = pygame.display.set_mode(((self.DISPLAY_W, self.DISPLAY_H)))       #choosing to display dimensions
         self.font_name = pygame.font.get_default_font()     #Choosing the font
@@ -18,7 +20,7 @@ class Game():
         self.options = OptionsMenu(self)
         self.credits = CreditsMenu(self)
         self.curr_menu = self.main_menu
-
+        
     def game_loop(self):        #defining the loop that displays the menu
         while self.playing:
             self.check_events()     #check if keys are pressed
