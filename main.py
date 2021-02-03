@@ -75,6 +75,11 @@ crimeSceneBG = pygame.image.load("assets/backgrounds/Game_First_Scene_bigger_res
 #Button:
 textbox = pygame.image.load("assets/UI/textbox_full_res.png").convert_alpha()
 
+#Flowers:
+flowerPot1=pygame.image.load("assets/backgrounds/flower_pot_1.png").convert_alpha()
+flowerPot2=pygame.image.load("assets/backgrounds/flower_pot_2.png").convert_alpha()
+flowerPot3=pygame.image.load("assets/backgrounds/flower_pot_3.png").convert_alpha()
+flowerPot4=pygame.image.load("assets/backgrounds/flower_pot_4.png").convert_alpha()
 
 
 
@@ -96,8 +101,12 @@ keys = pygame.key.get_pressed()
 
 
 
-
-
+#Init variables:
+bushes= False
+tempProgress= True
+temProgress=False
+temporaryProgress=0
+taklingabout= False
 
 
 #dialogues:
@@ -136,8 +145,12 @@ def oftenusedD1(): #This is a function that executes the lines of code that are 
 def checkanykey(): #This function checks if any key is pressed on the keyboard.
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
-            global progress
-            progress += 1
+            if temProgress==True:
+                global temporaryProgress
+                temporaryProgress+=1
+            else:
+                global progress
+                progress += 1
             print("click")
 
 def boundaries(): #teleports the player back into the game boundaries if he tries to get out
@@ -175,6 +188,7 @@ def walking_function():#vérifie si le joueur est en train de marcher et dans qu
                 walkingRight = True
             if event.key == K_LEFT:
                 walkingRight = False
+    screen.blit(flowerPot1, (523, 450))
     screen.blit(crimeSceneBG, (0, 0))
 
 
@@ -246,40 +260,93 @@ while running:
         screen.blit(toprint, (250, 540))
         pygame.display.update()
         checkanykey()
+        show_walk= True
 
 
 
         
     if progress== 5:#phase d'enquete
-        walking_function()
-        if animateWalking == True:
-            if walkingRight==True:
-                for counter in range(len(playerWalkR)):
-                    walkR = playerWalkR[int(counter)]
-                    counter = counter + 1
-                    screen.blit(crimeSceneBG, (0, 0))
-                    playerX = playerX + 40
-                    boundaries()
-                    screen.blit(walkR, (playerX, 350))
-                    pygame.display.update()
-                    time.sleep(0.2)
+        if show_walk:
+            walking_function()
+            Mouse_x, Mouse_y = pygame.mouse.get_pos()
+            print(Mouse_x, Mouse_y)
+        
+            if animateWalking == True:
+                if walkingRight==True:
+                    for counter in range(len(playerWalkR)):
+                        walkR = playerWalkR[int(counter)]
+                        counter = counter + 1
+                        screen.blit(crimeSceneBG, (0, 0))
+                        screen.blit(flowerPot1, (523, 450))
+                        playerX = playerX + 40
+                        boundaries()
+                        screen.blit(walkR, (playerX, 350))
+                        pygame.display.update()
+                        time.sleep(0.2)
+
+                else:
+                    for counter in range(len(playerWalkL)):
+                        walkL = playerWalkL[int(counter)]
+                        counter = counter + 1
+                        screen.blit(crimeSceneBG, (0, 0))
+                        screen.blit(flowerPot1, (523, 450))
+                        playerX = playerX - 40
+                        boundaries()
+                        screen.blit(walkL, (playerX, 350))
+                        pygame.display.update()
+                        time.sleep(0.2)
+
 
             else:
-                for counter in range(len(playerWalkL)):
-                    walkL = playerWalkL[int(counter)]
-                    counter = counter + 1
-                    screen.blit(crimeSceneBG, (0, 0))
-                    playerX = playerX - 40
-                    boundaries()
-                    screen.blit(walkL, (playerX, 350))
-                    pygame.display.update()
-                    time.sleep(0.2)
+                if walkingRight==False:
+                    screen.blit(flowerPot1, (523, 417))
+                    screen.blit(playerImgL,(playerX, 350))
+                
+                else:
+                    screen.blit(flowerPot1, (523, 417))
+                    screen.blit(playerImgR, (playerX, 350))
 
+        pressE=False
+    
+        print("player x=",playerX)
+        if playerX<= 670 and playerX>= 517:
 
+            toprint=dialogueFont.render("press e to inspect", True, (255, 255, 255))
+            pressE=True
+            bushes= True
+            screen.blit(toprint, (523, 417))
+            toprint=dialogueFont.render("press e to inspect", True, (255, 255, 255))
+            pressEprint=True
+            screen.blit(toprint, (523, 417))
+            pygame.display.update()
+        
+        elif True==False:
+            pass
+            #Ajouter les différents éléments à inspecter ici.
+        
         else:
-            if walkingRight==False:
-                screen.blit(playerImgL,(playerX, 350))
-                pygame.display.update()
-            else:
-                screen.blit(playerImgR, (playerX, 350))
-                pygame.display.update()
+            pygame.display.update()
+        
+        TalkingAbout=False
+        if pressE==True:
+            print("can press e")
+            keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
+            if keys[pygame.K_e]:  # Si la valeur de la clé K_RIGHT est vraie:
+                print("e.click")
+                TalkingAbout= True
+                if bushes== True:
+                    print("trying to display")
+                    
+                    temporaryProgress=0
+                    show_walk= False
+                    taklingabout= True
+                    
+                
+                
+        if taklingabout:
+            checkanykey()
+            oftenusedD1()
+            toprint=dialogueFont.render("Nice Bushes", True, (255, 255, 255))
+            pressEprint=True
+            pygame.display.update()
+        
