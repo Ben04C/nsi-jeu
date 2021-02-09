@@ -4,6 +4,7 @@ import pygame
 from game import *
 #Background
 crimeSceneBG = pygame.image.load("assets/backgrounds/Game_First_Scene_bigger_res.png")
+MenuBackground = pygame.image.load("assets/backgrounds/Menu_Background_Game_First_Scene_bigger_res_.png")
 
 class Menu():
     def __init__(self, game):
@@ -37,7 +38,7 @@ class MainMenu(Menu):  # making sure we can use the variables.
             self.game.check_events()
             self.check_input()
             #self.game.display.fill(self.game.BLACK)  # sets background to black
-            self.game.display.blit(crimeSceneBG,(0, 0))
+            self.game.display.blit(MenuBackground,(0, 0))
             #(crimeSceneBG, (0, 0))
             self.game.draw_text('Main Menu', 20, self.game.DISPLAY_W / 2,
                             self.game.DISPLAY_H / 2 - 20)  # postitioning text
@@ -96,7 +97,7 @@ class OptionsMenu(Menu):
         while self.run_display:
             self.game.check_events()
             self.check_imput()
-            self.game.display.blit(crimeSceneBG,(0, 0))
+            self.game.display.blit(MenuBackground,(0, 0))
             self.game.draw_text('Options', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 30)
             self.game.draw_text("You have no options, just play the game :)", 20, self.volx, self.voly)
             self.game.draw_text("Press Backspace to go back to the Main Menu", 10, self.controlsx, self.controlsy)
@@ -119,7 +120,7 @@ class CreditsMenu(Menu):
                 self.game.curr_menu = self.game.main_menu
                 self.run_display = False
             #self.game.display.fill(self.game.BLACK)
-            self.game.display.blit(crimeSceneBG,(0, 0))
+            self.game.display.blit(MenuBackground,(0, 0))
             self.game.draw_text('Credits', 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 200)
             self.game.draw_text('Made by:', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 125)
             self.game.draw_text('Benjamin', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 90)
