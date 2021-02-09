@@ -72,8 +72,9 @@ PoliceY = 480
 crimeSceneBG = pygame.image.load("assets/backgrounds/Game_First_Scene_bigger_res.png").convert()
 
 
-#Button:
+#UI:
 textbox = pygame.image.load("assets/UI/textbox_full_res.png").convert_alpha()
+inventaire = pygame.image.load("assets/UI/inventory.png").convert()
 
 #Flowers:
 flowerPot1=pygame.image.load("assets/backgrounds/flower_pot_1.png").convert_alpha()
@@ -109,6 +110,7 @@ temporaryProgress=0
 taklingabout= False
 showFlowerPot=True
 stopsign=False
+inventory = False   #par défaut l'inventaire est fermé
 
 
 
@@ -356,7 +358,7 @@ while running:
             keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
             if keys[pygame.K_e]:  # Si la valeur de la clé K_RIGHT est vraie:
                 print("e.click")
-                playerX = 5
+                #playerX = 5
                 TalkingAbout= True
                 if bushes== True: #On vérifie quel dialogue lancer ici le dialogue bushes
                     print("trying to display")
@@ -401,5 +403,16 @@ while running:
                     show_walk= True
                     temProgress = False
 
+        keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
+        if keys[pygame.K_TAB] and inventory == False:   #on vérifie si TAB est pressé et si l'inventaire est fermé
+            inventory = True   #indique que l'inventaire est maintenant ouvert
+            screen.blit(inventaire, (320, 40))   #L'image de l'inventaire s'affiche désormait à l'écran (inventaire est l'image, et inventory est le booléen!)
+            pygame.display.update()
+        if keys[pygame.K_TAB] and inventory == True:   #on vérifie si TAB est pressé et si l'inventaire est ouvert
+            inventory = False   #indique que l'inventaire est maintenant fermé
+            screen.blit(inventaire, (320, 40))
+            pygame.display.update()
 
-        
+        if inventory == True:
+            screen.blit(inventaire, (320, 40))
+            pygame.display.update()
