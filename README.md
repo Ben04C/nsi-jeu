@@ -29,7 +29,7 @@ On veut aussi ajouter des effets sons et de la musique mais on est pas sûrs d�
 <br>
 <h3>Séance du 09/02</h3>
 <p>Aujourd'hui le systeme d'inspection d'objets a été pas mal avancé, Maintenant il y a un dialogue lorsqu'on inspecte le pot de fleur. Un fois ce dialogue terminé, le pot de fleur disparaîtra (on ne le voit pas car le tableau contient toujours l'image du pot sur lui même). Il y a aussi eu des variables comme kbushes (diminutif de knowledge about bushes) qui ont étées crées pour savoir ce que le personnage a inspecté et donc a retenu.</p>
-
+<p>On a aussi Terminé le menu. Il y a maintenant un fond d'écran avec une boite a texte au centre ou se trouve le texte du menu, comme a la seace derniere on peut parcourir le menu de partout et il se trouve des instructions pour ou aller </p>
 <br>
 <br>
 <br>
