@@ -334,4 +334,4 @@ while running:
 
         if inventory == True:
             screen.blit(inventaire, (0, 0))
-            pygame.display.update
+            pygame.display.update()
