@@ -9,7 +9,7 @@ j=0
 g = Game()
 animateWalking = False
 
-while g.running:
+while g.running: #Executs the menu
     g.curr_menu.display_menu()
     g.game_loop() #opens menu
 
@@ -83,7 +83,7 @@ flowerPot4=pygame.image.load("assets/backgrounds/flower_pot_4.png").convert_alph
 
 
 
-
+#Le son n'est pas implemente pour l'instant.
 #sound
 #def m_buzzing():
     #pygame.mixer.music.load("assets/sound/SFX/Neon_light_Buzzing.mp3")
@@ -107,6 +107,7 @@ tempProgress= True
 temProgress=False
 temporaryProgress=0
 taklingabout= False
+showFlowerPot=True
 
 
 #dialogues:
@@ -117,7 +118,7 @@ explanation1= dialogueFont.render("Policeman: Good evening Detective, press any 
 
 
 
-def cutscene1():# This cutscene is finally not used for now. We keep it just in case we have some more time.
+def cutscene1():# Nous n'utilisons plus cette partie, nous la gardons seulement au cas où.
     cscene1d=["Flicker", "Flicker", "Flicker", "You're a goner"]
     pygame.mixer.music.set_volume(0.7)
     for i in range(4): #Makes the screen blink
@@ -145,9 +146,9 @@ def oftenusedD1(): #This is a function that executes the lines of code that are 
 def checkanykey(): #This function checks if any key is pressed on the keyboard.
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
-            if temProgress==True:
+            if temProgress==True: #Temp progress servira a intercaler des dialogues quand le jouer discutera sur le sujet d'un objet qu'il a analyse.
                 global temporaryProgress
-                temporaryProgress+=1
+                temporaryProgress += 1
             else:
                 global progress
                 progress += 1
@@ -160,7 +161,7 @@ def boundaries(): #teleports the player back into the game boundaries if he trie
     if playerX >= 1150:
         playerX = 1149
 
-def walking_function():#vérifie si le joueur est en train de marcher et dans quelle dirrection
+def walking_function():#verifie si le joueur est en train de marcher et dans quelle dirrection
     global animateWalking
     global j
     global walkingRight
@@ -182,10 +183,10 @@ def walking_function():#vérifie si le joueur est en train de marcher et dans qu
             j = 0
             animateWalking = True
 
-    for event in pygame.event.get():
+    for event in pygame.event.get(): #Permet de vérifier quelle touche a ete utilisee et donc dans quelle dirrection il faut orienter le joueur.
         if event.type == pygame.KEYDOWN:
             if event.key == K_RIGHT:
-                walkingRight = True
+                walkingRight = True #Orientation du joueur
             if event.key == K_LEFT:
                 walkingRight = False
     screen.blit(flowerPot1, (523, 450))
@@ -204,27 +205,27 @@ while running:
     for event in pygame.event.get(): #checks if cross is clicked.
         if event.type == QUIT:
 
-            running = False
+            running = False#On ferme le jeu en passant la boucle en false
             print("croix")
     clock.tick(30) #FPS
 
-
-            
     
     if progress == 0:
+        temProgress = False
         checkAnyKey=True
         oftenusedD1()
-        screen.blit(explanation1, (250,500))#écrit le premier texte visible à l'écran
+        screen.blit(explanation1, (250,500))#ecrit le premier texte visible à l'ecran
         pygame.display.update()
-        checkanykey()#appele la fonction checkanykey() qui permet de vérifier si une touche du clavier est cliquée.
+        checkanykey()#appele la fonction checkanykey() qui permet de vérifier si une touche du clavier est cliquee.
 
             
             
     if progress == 1:
+        temProgress = False
         oftenusedD1()
-        toprint = dialogueFont.render("Huf... Puff..., Huf..., Puff. Palms sweaty, this case seems", True, (255, 255, 255))#Ceci sont les paramètres du texte à afficher
-        screen.blit(toprint, (250,500))#Ceci affiche le texte
-        toprint = dialogueFont.render("to be big. AND Why is it always me that has to be called ", True, (255, 255, 255))#Une autre ligne
+        toprint = dialogueFont.render("Huf... Puff..., Huf..., Puff. Palms sweaty, this case seems", True, (255, 255, 255))#Ceci sont les paramètres du texte a afficher
+        screen.blit(toprint, (250,500)) #Ceci affiche le texte
+        toprint = dialogueFont.render("to be big. AND Why is it always me that has to be called ", True, (255, 255, 255))#Une autre ligne de dialogue
         screen.blit(toprint, (250, 520))
         toprint = dialogueFont.render("upon at 2am.", True, (255, 255, 255))
         screen.blit(toprint, (250, 540))
@@ -232,16 +233,18 @@ while running:
         checkanykey()
 
     if progress == 2:
+        temProgress = False
         oftenusedD1()
-        toprint = dialogueFont.render("My name is Richard Bright, homocide detective at the  ", True, (255, 255, 255))
+        toprint = dialogueFont.render("My name is Richard Bright, homocide detective at the  ", True, (255, 255, 255)) #Et une autre
         screen.blit(toprint, (250,500))
-        toprint = dialogueFont.render("local precinct from Taga, Our great leader Mr. Taga himself called me", True, (255, 255, 255))
+        toprint = dialogueFont.render("local precinct from Taga, Our great leader Mr. Taga himself called me", True, (255, 255, 255)) #Encore une
         screen.blit(toprint, (250, 520))
-        toprint = dialogueFont.render("Let me tell you I got a ", True, (255, 255, 255))
+        toprint = dialogueFont.render("Let me tell you I got a ", True, (255, 255, 255)) #Fin on a compris quoi.
         pygame.display.update()
         checkanykey()
 
     if progress == 3:
+        temProgress = False
         oftenusedD1()
         toprint = dialogueFont.render("Policeman :I am sorry to have warned you  this late", True, (255, 255, 255))
         screen.blit(toprint, (250, 500))
@@ -251,6 +254,7 @@ while running:
         checkanykey()
 
     if progress == 4:
+        temProgress = False
         oftenusedD1()
         toprint = dialogueFont.render("Policeman :We have already investigated a bit,", True, (255, 255, 255))
         screen.blit(toprint, (250, 500))
@@ -271,26 +275,30 @@ while running:
             Mouse_x, Mouse_y = pygame.mouse.get_pos()
             print(Mouse_x, Mouse_y)
         
-            if animateWalking == True:
-                if walkingRight==True:
-                    for counter in range(len(playerWalkR)):
-                        walkR = playerWalkR[int(counter)]
+            if animateWalking == True: #On verifie s'il faut animer le joueur else il sera a l'arret.
+                if walkingRight==True: #On verifie dans quel sens il faut s'orrienter.
+
+                    for counter in range(len(playerWalkR)): #Boucle pour afficher chaque frame de l'animation 1 par 1.
+                        walkR = playerWalkR[int(counter)]#WalkR est une variable contenant l'image a afficher. PlayerWalkR est une liste contenant toutes les frames de marche
                         counter = counter + 1
-                        screen.blit(crimeSceneBG, (0, 0))
-                        screen.blit(flowerPot1, (523, 450))
-                        playerX = playerX + 40
-                        boundaries()
-                        screen.blit(walkR, (playerX, 350))
-                        pygame.display.update()
-                        time.sleep(0.2)
+                        screen.blit(crimeSceneBG, (0, 0)) #On blit tout ce qu'il faut.
+                        if showFlowerPot==True: #On vérifie si le pot de fleur n'a pas été récupéré
+                            screen.blit(flowerPot1, (523, 417))
+
+                        playerX = playerX + 40 #Apres avoir blit la frame on ajoute 40 a la position du joueur
+                        boundaries() #On vérifie si le joueur n'essaie pas de sortir.
+                        screen.blit(walkR, (playerX, 350)) #On affiche le joueur
+                        pygame.display.update() #On rafraichit l'ecran
+                        time.sleep(0.2) #On attends 0.2s afin de rendre l'animation realiste.
 
                 else:
-                    for counter in range(len(playerWalkL)):
-                        walkL = playerWalkL[int(counter)]
+                    for counter in range(len(playerWalkL)): #C'est presque la meme chose qu'au dessus
+                        walkL = playerWalkL[int(counter)] #WalkL est une variable contenant l'image a afficher. PlayerWalkL est une liste contenant toutes les frames de marche
                         counter = counter + 1
-                        screen.blit(crimeSceneBG, (0, 0))
-                        screen.blit(flowerPot1, (523, 450))
-                        playerX = playerX - 40
+                        screen.blit(crimeSceneBG, (0, 0)) #On print tout ce qu'il faut.
+                        if showFlowerPot==True: #On vérifie si le pot de fleur n'a pas été récupéré
+                            screen.blit(flowerPot1, (523, 417))
+                        playerX = playerX - 40 #Apres avoir blit la frame on ajoute 40 a la position du joueur
                         boundaries()
                         screen.blit(walkL, (playerX, 350))
                         pygame.display.update()
@@ -298,11 +306,12 @@ while running:
 
 
             else:
-                if walkingRight==False:
-                    screen.blit(flowerPot1, (523, 417))
+                if walkingRight==False: #On verifie dans quel sens s'orrienter
+                    if showFlowerPot == True:  # On vérifie si le pot de fleur n'a pas été récupéré
+                        screen.blit(flowerPot1, (523, 417))
                     screen.blit(playerImgL,(playerX, 350))
                 
-                else:
+                else: #Si l'on ne doit pas s'orrienter a droite alors logiquement il faut aller a gauche.
                     screen.blit(flowerPot1, (523, 417))
                     screen.blit(playerImgR, (playerX, 350))
 
@@ -333,8 +342,9 @@ while running:
             keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
             if keys[pygame.K_e]:  # Si la valeur de la clé K_RIGHT est vraie:
                 print("e.click")
+                playerX = 5
                 TalkingAbout= True
-                if bushes== True:
+                if bushes== True: #On vérifie quel dialogue lancer ici le dialogue bushes
                     print("trying to display")
                     
                     temporaryProgress=0
@@ -343,10 +353,30 @@ while running:
                     
                 
                 
-        if taklingabout:
-            checkanykey()
+        if taklingabout: #Le joueur inspecte le pot de fleurs et un dialoque se lance
             oftenusedD1()
-            toprint=dialogueFont.render("Nice Bushes", True, (255, 255, 255))
+            temProgress=True
+            if bushes == True: #On lance le lialogue bushes la structure ci-dessous est tres similaire a celle au premier dialogue.
+
+                if temporaryProgress == 0:
+                    checkanykey() #on vérifie si une touche est enfoncée
+                    oftenusedD1() #On met l'ecran de dialogue
+                    toprint=dialogueFont.render("Nice Bushes", True, (255, 255, 255))
+                    screen.blit(toprint, (250, 500))
+
+                if temporaryProgress == 1:
+                    checkanykey()
+                    oftenusedD1()
+                    toprint = dialogueFont.render("This flower pot seems to have a crack, Detective could we analyse these bushes", True, (255, 255, 255))
+                    screen.blit(toprint, (250, 500))
+
+                if temporaryProgress == 2:
+                    checkanykey()
+                    oftenusedD1()
+                    toprint = dialogueFont.render("Right away sir", True, (255, 255, 255))
+                    screen.blit(toprint, (250, 500))
+
+            screen.blit(toprint, (250, 500))
             pressEprint=True
             pygame.display.update()
         
