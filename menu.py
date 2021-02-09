@@ -4,6 +4,7 @@ import pygame
 from game import *
 #Background
 crimeSceneBG = pygame.image.load("assets/backgrounds/Game_First_Scene_bigger_res.png")
+MenuBackground = pygame.image.load("assets/backgrounds/Menu_Background_Game_First_Scene_bigger_res_.png")
 
 class Menu():
     def __init__(self, game):
@@ -13,7 +14,7 @@ class Menu():
         self.offset = - 100  # making sure cursor doesnt have to be on top of the text
 
     def draw_cursor(self):
-        self.game.draw_text('-->', 30, self.cursor_rect.midtop[0], self.cursor_rect.midtop[1])
+        self.game.draw_text('-->', 25, self.cursor_rect.midtop[0], self.cursor_rect.midtop[1])
 
     def blit_screen(self):
         self.game.window.blit(self.game.display, (0, 0))
@@ -26,9 +27,9 @@ class MainMenu(Menu):  # making sure we can use the variables.
     def __init__(self, game):
         Menu.__init__(self, game)
         self.state = "Start"  # when game starts main cursor points at start game
-        self.startx, self.starty = self.mid_w, self.mid_h + 30  # position of start game text
-        self.optionsx, self.optionsy = self.mid_w, self.mid_h + 70  # position of options text
-        self.creditsx, self.creditsy = self.mid_w, self.mid_h + 50  # position of credits text
+        self.startx, self.starty = self.mid_w, self.mid_h + - 90  # position of start game text
+        self.optionsx, self.optionsy = self.mid_w, self.mid_h + 50  # position of options text
+        self.creditsx, self.creditsy = self.mid_w, self.mid_h + -20  # position of credits text
         self.cursor_rect.midtop = (self.startx + self.offset, self.starty)  # starting position of the cursor
 
     def display_menu(self):  # displays or doesnt display the menu
@@ -37,14 +38,13 @@ class MainMenu(Menu):  # making sure we can use the variables.
             self.game.check_events()
             self.check_input()
             #self.game.display.fill(self.game.BLACK)  # sets background to black
-            self.game.display.blit(crimeSceneBG,(0, 0))
+            self.game.display.blit(MenuBackground,(0, 0))
             #(crimeSceneBG, (0, 0))
-            self.game.draw_text('Main Menu', 20, self.game.DISPLAY_W / 2,
-                            self.game.DISPLAY_H / 2 - 20)  # postitioning text
-            self.game.draw_text('Start Game', 20, self.startx, self.starty)
-            self.game.draw_text('Options', 20, self.optionsx, self.optionsy)
-            self.game.draw_text('Credits', 20, self.creditsx, self.creditsy)
-            self.game.draw_text('Press enter to continue', 10, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 100)
+            self.game.draw_text('Main Menu', 50, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 200)  # postitioning text
+            self.game.draw_text('Start Game', 30, self.startx, self.starty)
+            self.game.draw_text('Options', 30, self.optionsx, self.optionsy)
+            self.game.draw_text('Credits', 30, self.creditsx, self.creditsy)
+            self.game.draw_text('Press enter to continue', 15, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 200)
             self.draw_cursor()
             self.check_input()
             self.blit_screen()
@@ -96,10 +96,11 @@ class OptionsMenu(Menu):
         while self.run_display:
             self.game.check_events()
             self.check_imput()
-            self.game.display.blit(crimeSceneBG,(0, 0))
-            self.game.draw_text('Options', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 30)
-            self.game.draw_text("You have no options, just play the game :)", 20, self.volx, self.voly)
-            self.game.draw_text("Press Backspace to go back to the Main Menu", 10, self.controlsx, self.controlsy)
+            self.game.display.blit(MenuBackground,(0, 0))
+            self.game.draw_text('Options', 50, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 200)
+            self.game.draw_text("You have no options,", 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 -50)
+            self.game.draw_text("just play the game! :)", 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 +0)
+            self.game.draw_text("Press Backspace to go back to the Main Menu", 10, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 +200)
             self.blit_screen()
 
     def check_imput(self):
@@ -119,11 +120,11 @@ class CreditsMenu(Menu):
                 self.game.curr_menu = self.game.main_menu
                 self.run_display = False
             #self.game.display.fill(self.game.BLACK)
-            self.game.display.blit(crimeSceneBG,(0, 0))
-            self.game.draw_text('Credits', 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 200)
-            self.game.draw_text('Made by:', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 125)
-            self.game.draw_text('Benjamin', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 90)
-            self.game.draw_text('Michiel', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 55)
-            self.game.draw_text('Valentina', 20, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 20)
-            self.game.draw_text('Press Backspace to go back to the Main Menu', 10, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 15)
+            self.game.display.blit(MenuBackground,(0, 0))
+            self.game.draw_text('Credits', 50, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 200)
+            self.game.draw_text('Made by:', 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 125)
+            self.game.draw_text('Benjamin', 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 50)
+            self.game.draw_text('Michiel', 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 25)
+            self.game.draw_text('Valentina', 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 100)
+            self.game.draw_text('Press Backspace to go back to the Main Menu', 15, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 200)
             self.blit_screen()
