@@ -108,6 +108,13 @@ temProgress=False
 temporaryProgress=0
 taklingabout= False
 showFlowerPot=True
+stopsign=False
+
+
+
+#knowledge init variables:
+kbushes=False
+kstopsign=False
 
 
 #dialogues:
@@ -208,6 +215,8 @@ while running:
             running = False#On ferme le jeu en passant la boucle en false
             print("croix")
     clock.tick(30) #FPS
+
+    print(temporaryProgress)
 
     
     if progress == 0:
@@ -312,7 +321,8 @@ while running:
                     screen.blit(playerImgL,(playerX, 350))
                 
                 else: #Si l'on ne doit pas s'orrienter a droite alors logiquement il faut aller a gauche.
-                    screen.blit(flowerPot1, (523, 417))
+                    if showFlowerPot == True:  # On vérifie si le pot de fleur n'a pas été récupéré
+                        screen.blit(flowerPot1, (523, 417))
                     screen.blit(playerImgR, (playerX, 350))
 
         pressE=False
@@ -329,8 +339,12 @@ while running:
             screen.blit(toprint, (523, 417))
             pygame.display.update()
         
-        elif True==False:
-            pass
+        elif playerX<=210 and playerX>=20:
+            toprint = dialogueFont.render("press e to inspect", True, (255, 255, 255))
+            screen.blit(toprint, (523, 417))
+            stopsign=True
+            pressE = True
+
             #Ajouter les différents éléments à inspecter ici.
         
         else:
@@ -354,6 +368,7 @@ while running:
                 
                 
         if taklingabout: #Le joueur inspecte le pot de fleurs et un dialoque se lance
+            print("hello")
             oftenusedD1()
             temProgress=True
             if bushes == True: #On lance le lialogue bushes la structure ci-dessous est tres similaire a celle au premier dialogue.
@@ -361,7 +376,7 @@ while running:
                 if temporaryProgress == 0:
                     checkanykey() #on vérifie si une touche est enfoncée
                     oftenusedD1() #On met l'ecran de dialogue
-                    toprint=dialogueFont.render("Nice Bushes", True, (255, 255, 255))
+                    toprint=dialogueFont.render("Nice Bushes", True, (255, 255, 255)) #On affiche les dialogue de la meme maniere que dans le reste du jeu.
                     screen.blit(toprint, (250, 500))
 
                 if temporaryProgress == 1:
@@ -376,7 +391,15 @@ while running:
                     toprint = dialogueFont.render("Right away sir", True, (255, 255, 255))
                     screen.blit(toprint, (250, 500))
 
-            screen.blit(toprint, (250, 500))
-            pressEprint=True
-            pygame.display.update()
+                if temporaryProgress == 3:
+                    showFlowerPot = False #On arrete d'afficher le pot de fleur car il a ete recupere pour analyse.
+                    tempProgress = 0 #On remet tout les parametres requis afin de retourner a la phase d'enquete.
+                    taklingabout = False
+                    bushes = False
+                    kbushes = True
+                    progress = 5
+                    show_walk= True
+                    temProgress = False
+
+
         
