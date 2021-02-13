@@ -291,7 +291,6 @@ while running:
 
                     for counter in range(len(playerWalkR)): #Boucle pour afficher chaque frame de l'animation 1 par 1.
                         walkR = playerWalkR[int(counter)]#WalkR est une variable contenant l'image a afficher. PlayerWalkR est une liste contenant toutes les frames de marche
-                        counter = counter + 1
                         screen.blit(crimeSceneBG, (0, 0)) #On blit tout ce qu'il faut.
                         if showFlowerPot==True: #On vérifie si le pot de fleur n'a pas été récupéré
                             screen.blit(flowerPot1, (523, 417))
@@ -305,7 +304,6 @@ while running:
                 else:
                     for counter in range(len(playerWalkL)): #C'est presque la meme chose qu'au dessus
                         walkL = playerWalkL[int(counter)] #WalkL est une variable contenant l'image a afficher. PlayerWalkL est une liste contenant toutes les frames de marche
-                        counter = counter + 1
                         screen.blit(crimeSceneBG, (0, 0)) #On print tout ce qu'il faut.
                         if showFlowerPot==True: #On vérifie si le pot de fleur n'a pas été récupéré
                             screen.blit(flowerPot1, (523, 417))
