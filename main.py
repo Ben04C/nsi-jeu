@@ -1,4 +1,3 @@
-import time
 import pygame
 
 from pygame.locals import *
@@ -300,7 +299,7 @@ while running:
                         boundaries() #On vérifie si le joueur n'essaie pas de sortir.
                         screen.blit(walkR, (playerX, 350)) #On affiche le joueur
                         pygame.display.update() #On rafraichit l'ecran
-                        time.sleep(0.2) #On attends 0.2s afin de rendre l'animation realiste.
+                        pygame.time.wait(200) #On attends 0.2s afin de rendre l'animation realiste.
 
                 else:
                     for counter in range(len(playerWalkL)): #C'est presque la meme chose qu'au dessus
@@ -313,7 +312,7 @@ while running:
                         boundaries()
                         screen.blit(walkL, (playerX, 350))
                         pygame.display.update()
-                        time.sleep(0.2)
+                        pygame.time.wait(200) #On attends 0.2s afin de rendre l'animation realiste.
 
 
             else:
