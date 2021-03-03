@@ -234,8 +234,8 @@ while running:
     if inventory == True:
         screen.blit(inventaire, (320, 40))
         pygame.display.update()
-            
-    if kbushes == True:
+
+    if kbushes == True and keys[pygame.K_TAB]:
         screen.blit(flowerPot1, (409, 365))
         pygame.display.update()
         
