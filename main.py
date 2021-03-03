@@ -110,7 +110,7 @@ temporaryProgress=0
 taklingabout= False
 showFlowerPot=True
 stopsign=False
-inventory = False   #par défaut l'inventaire est fermé
+inventory=False   #par défaut l'inventaire est fermé
 
 
 
@@ -415,4 +415,8 @@ while running:
 
         if inventory == True:
             screen.blit(inventaire, (320, 40))
+            pygame.display.update()
+
+        if kbushes == True and keys[pygame.K_TAB]:
+            screen.blit(flowerPot1, (409, 365))
             pygame.display.update()
