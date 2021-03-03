@@ -201,15 +201,14 @@ def walking_function():#verifie si le joueur est en train de marcher et dans que
     screen.blit(flowerPot1, (523, 450))
     screen.blit(crimeSceneBG, (0, 0))
 
-def inventory_h():
-    keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
-    if keys[pygame.K_TAB] and inventory == False:   #on vérifie si TAB est pressé et si l'inventaire est fermé
-        inventory = True   #indique que l'inventaire est maintenant ouvert
+
+#keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
+#if keys[pygame.K_TAB] and inventory == False:
+    #inventory = True
 
 
-
-
-
+#on vérifie si TAB est pressé et si l'inventaire est fermé
+#indique que l'inventaire est maintenant ouvert
 
 #Game loop
 running = True
@@ -241,7 +240,6 @@ while running:
         
         
     else:
-        inventory_h()
         if progress == 0:
             temProgress = False
             checkAnyKey=True
