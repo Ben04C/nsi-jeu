@@ -6,6 +6,9 @@ Ce projet est un petit jeu fait avec python et la bibliothèque pygame.
 <h2>**Configuration requise**</h2>
 Ce projet utilise la version python 3.9 et la version 2.0.1 de pygame. <br>
 Afin d'installer pygame faire **pip install pygame**
+<br>
+Ce projet utilise le module csv
+Bien qu'il soit generalement installe, il est possible de le faire avec **pip install csv**
 
 <h2>**Guide D'utilisation**</h2>
 <p>Pour lancer le jeu: executer le fichier main.py Un menu va apparaitre il est possible de naviguer entre les options avec les fleches et de séléctionner avec la touche entrée. SEULE L'OPTION START GAME FONCTIONNE POUR L'INSTANT une fois cette option choisie, le jeu lui-même va apparaitre. Il y aura un bref dialogue. Une fois le dialogue terminé il sera possible de se déplacer avec les touches droite et gauche du clavier.</p><br>
@@ -33,6 +36,9 @@ On veut aussi ajouter des effets sons et de la musique mais on est pas sûrs d�
 <p>On a aussi ajouté un inventaire. Quand le joueur appuie sur TAB, l'inventaire s'ouvre. Il n'est pas encore fonctionnel mais il s'affiche au centre de l'écran, et disparait quand on arrête d'appuyer sur TAB. La variable inventory a été ajoutée, c'est un bouléen qui indique si l'inventaire est fermé ou ouvert. Il est utilisé dans le programme qui affiche l'inventaire, toujours dans main.py. Le fichier principal est toujour main.py, il faut lancer le jeu à partir de ce fichier là. Le fichier main_temp.py a récemment été ajouté par Valentina (moi) pour travailler en parallèle sur l'inventaire pendant que Benjamin travaillait sur l'interaction avec le pot de fleur. Il sera effacé bientôt. La semaine dernière on a aussi fait fonctionner l'animation de marche du personnage. On a utilisé la librairie time pour faire ralentir l'animation du personnage. Finallement on a aussi commenté le code en plus de détails pour le rendre plus compréhensible. Pour le menu, on voudrait que quand le personnage rammase un objet, il aparait dans l'inventaire et qu'on puisse interragir avec. On voudrait aussi ajouter plus d'infos sur le personnage dans l'inventaire, comme son identité, son badge, et les statistiques du joueur et sa progression.</p>
 <br>
 <br>
+<H3>Séance du 10/03</H3>
+<p>Les dialogues du jeu ont ete refaits et deplaces dans des fichiers .csv et sont ajoutes dans des listes dans le fichier python "csv dialogues.py" afin de ne pas surcharger le fichier main.py l'integration n'a pas encore été réalisée</p>
+
 <br>
 <br>
 old:
