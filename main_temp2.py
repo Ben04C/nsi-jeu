@@ -202,6 +202,10 @@ def walking_function():#verifie si le joueur est en train de marcher et dans que
     screen.blit(crimeSceneBG, (0, 0))
 
 
+def show_bg():
+    screen.blit(crimeSceneBG, (0, 0))
+
+
 #keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
 #if keys[pygame.K_TAB] and inventory == False:
     #inventory = True
@@ -221,22 +225,32 @@ while running:
     clock.tick(30) #FPS
 
     print(temporaryProgress)
+    if event.type == KEYDOWN:
+        if inventory == False and event.key == K_TAB:
+            print("i'm trying honest")
+            inventory = True
+            screen.blit(inventaire, (320, 40))
+            if inventory == True and event.key == K_TAB:
+                inventory = False
+            pygame.display.update()
 
-    if inventory == True:
-        screen.blit(inventaire, (320, 40))   #L'image de l'inventaire s'affiche désormait à l'écran (inventaire est l'image, et inventory est le booléen!)
-        pygame.display.update()
-    if keys[pygame.K_TAB] and inventory == True:   #on vérifie si TAB est pressé et si l'inventaire est ouvert
-        inventory = False   #indique que l'inventaire est maintenant fermé
-        screen.blit(inventaire, (320, 40))
-        pygame.display.update()
 
-    if inventory == True:
-        screen.blit(inventaire, (320, 40))
-        pygame.display.update()
+    #if event.type == KEYDOWN:
+        #if event.key == K_TAB and inventory == False:  # on vérifie si TAB est pressé et si l'inventaire est fermé
+            #inventory = True  # indique que l'inventaire est maintenant ouvert
+            #screen.blit(inventaire, (320, 40))  # L'image de l'inventaire s'affiche désormait à l'écran (inventaire est l'image, et inventory est le booléen!)
+            #pygame.display.update()
+        #if event.key == K_TAB and inventory == True:  # on vérifie si TAB est pressé et si l'inventaire est ouvert
+            #inventory = False  # indique que l'inventaire est maintenant fermé
+            #screen.blit(crimeSceneBG, (0, 0))
+            #pygame.display.update()
 
-    if kbushes == True and keys[pygame.K_TAB]:
-        screen.blit(flowerPot1, (409, 365))
-        pygame.display.update()
+        #if inventory == True:
+            #screen.blit(inventaire, (320, 40))
+            #pygame.display.update()
+        #if kbushes == True and event.key == K_TAB:
+            #screen.blit(flowerPot1, (409, 365))
+            #pygame.display.update()
         
         
     else:
