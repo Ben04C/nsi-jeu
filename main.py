@@ -14,6 +14,12 @@ while g.running:  # Executs the menu
     g.game_loop()  # opens menu
 
 # Initialisation
+
+from csv_dialogue import MainDialogues, FlowerPotDialogue
+
+print(MainDialogues)
+
+
 pygame.init()
 pygame.mixer.init()
 i = 0
@@ -189,6 +195,11 @@ def show_bg():
     screen.blit(crimeSceneBG, (0, 0))
 
 
+def ToPrint(x):
+    return dialogueFont.render(MainDialogues[x], True,
+                                          (255, 255, 255))
+
+
 # keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
 # if keys[pygame.K_TAB] and inventory == False:
 # inventory = True
@@ -239,61 +250,81 @@ while running:
             temProgress = False
             checkAnyKey = True
             oftenusedD1()
-            screen.blit(explanation1, (250, 500))  # ecrit le premier texte visible à l'ecran
+            screen.blit(ToPrint(0), (250, 500))  # Ceci affiche le texte
             pygame.display.update()
             checkanykey()  # appele la fonction checkanykey() qui permet de vérifier si une touche du clavier est cliquee.
 
         if progress == 1:
             temProgress = False
             oftenusedD1()
-            toprint = dialogueFont.render("Huf... Puff..., Huf..., Puff. Palms sweaty, this case seems", True,
-                                          (255, 255, 255))  # Ceci sont les paramètres du texte a afficher
-            screen.blit(toprint, (250, 500))  # Ceci affiche le texte
-            toprint = dialogueFont.render("to be big. AND Why is it always me that has to be called ", True,
-                                          (255, 255, 255))  # Une autre ligne de dialogue
-            screen.blit(toprint, (250, 520))
-            toprint = dialogueFont.render("upon at 2am.", True, (255, 255, 255))
-            screen.blit(toprint, (250, 540))
+            print("oversised")
+            oversisedPrint = dialogueFont.render(MainDialogues[1][:81], True,
+                                          (255, 255, 255))
+            screen.blit(oversisedPrint, (250, 500))
+            oversisedPrint = dialogueFont.render(MainDialogues[1][81:], True,
+                                          (255, 255, 255))
+            screen.blit(oversisedPrint, (250, 520))
             pygame.display.update()
             checkanykey()
 
         if progress == 2:
             temProgress = False
             oftenusedD1()
-            toprint = dialogueFont.render("My name is Richard Bright, homocide detective at the  ", True,
-                                          (255, 255, 255))  # Et une autre
-            screen.blit(toprint, (250, 500))
-            toprint = dialogueFont.render("local precinct from Taga, Our great leader Mr. Taga himself called me", True,
-                                          (255, 255, 255))  # Encore une
-            screen.blit(toprint, (250, 520))
-            toprint = dialogueFont.render("Let me tell you I got a ", True, (255, 255, 255))  # Fin on a compris quoi.
+            screen.blit(ToPrint(2), (250, 500))
             pygame.display.update()
             checkanykey()
 
         if progress == 3:
             temProgress = False
             oftenusedD1()
-            toprint = dialogueFont.render("Policeman :I am sorry to have warned you  this late", True, (255, 255, 255))
-            screen.blit(toprint, (250, 500))
-            toprint = dialogueFont.render("but the matter is urgent !", True, (255, 255, 255))
-            screen.blit(toprint, (250, 520))
+            screen.blit(ToPrint(3), (250, 500))
             pygame.display.update()
             checkanykey()
 
         if progress == 4:
             temProgress = False
             oftenusedD1()
-            toprint = dialogueFont.render("Policeman :We have already investigated a bit,", True, (255, 255, 255))
-            screen.blit(toprint, (250, 500))
-            toprint = dialogueFont.render("BECAUSE WE HAD BUDGET CUTS LETS GET TO THE ", True, (255, 255, 255))
-            screen.blit(toprint, (250, 520))
-            toprint = dialogueFont.render("INVESTIGATION", True, (255, 255, 255))
-            screen.blit(toprint, (250, 540))
+            screen.blit(ToPrint(4), (250, 500))
+            pygame.display.update()
+            checkanykey()
+
+        if progress == 5:
+            temProgress = False
+            oftenusedD1()
+            screen.blit(ToPrint(5), (250, 500))
+            pygame.display.update()
+            checkanykey()
+
+        if progress == 6:
+            temProgress = False
+            oftenusedD1()
+            screen.blit(ToPrint(6), (250, 500))
+            pygame.display.update()
+            checkanykey()
+
+        if progress == 7:
+            temProgress = False
+            oftenusedD1()
+            screen.blit(ToPrint(7), (250, 500))
+            pygame.display.update()
+            checkanykey()
+
+        if progress == 8:
+            temProgress = False
+            oftenusedD1()
+            screen.blit(ToPrint(8), (250, 500))
+            pygame.display.update()
+            checkanykey()
+
+        if progress == 9:
+            temProgress = False
+            oftenusedD1()
+            screen.blit(ToPrint(9), (250, 500))
             pygame.display.update()
             checkanykey()
             show_walk = True
 
-        if progress == 5:  # phase d'enquete
+        if progress == 10:  # phase d'enquete
             if inventory == True:
                 screen.blit(inventaire, (320, 40))
 
