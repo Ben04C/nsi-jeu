@@ -314,91 +314,112 @@ while running:
 
         
         if progress== 5:#phase d'enquete
-            if show_walk:
-                walking_function()
-                Mouse_x, Mouse_y = pygame.mouse.get_pos()
-                print(Mouse_x, Mouse_y)
+            if inventory==True:
+                screen.blit(inventaire, (320, 40))
+
+                keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
+                if keys[pygame.K_TAB]:  # Si la valeur de la clé K_TAB est vraie:
+                    print("TAB.click")
+                    inventory = False
+                    time.sleep(0.2)  # afin de ne pas prendre en compte un double press
+
+                pygame.display.update()
+
+
+
+            else:
+                keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
+                if keys[pygame.K_TAB]:  # Si la valeur de la clé K_TAB est vraie:
+                    print("TAB.click")
+                    inventory=True
+                    time.sleep(0.2) #afin de ne pas prendre en compte un double press
+
+
+                if show_walk:
+                    walking_function()
+                    Mouse_x, Mouse_y = pygame.mouse.get_pos()
+                    print(Mouse_x, Mouse_y)
         
-                if animateWalking == True: #On verifie s'il faut animer le joueur else il sera a l'arret.
-                    if walkingRight==True: #On verifie dans quel sens il faut s'orrienter.
+                    if animateWalking == True: #On verifie s'il faut animer le joueur else il sera a l'arret.
+                        if walkingRight==True: #On verifie dans quel sens il faut s'orrienter.
 
-                        for counter in range(len(playerWalkR)): #Boucle pour afficher chaque frame de l'animation 1 par 1.
-                            walkR = playerWalkR[int(counter)]#WalkR est une variable contenant l'image a afficher. PlayerWalkR est une liste contenant toutes les frames de marche
-                            counter = counter + 1
-                            screen.blit(crimeSceneBG, (0, 0)) #On blit tout ce qu'il faut.
-                            if showFlowerPot==True: #On vérifie si le pot de fleur n'a pas été récupéré
-                                screen.blit(flowerPot1, (523, 417))
+                            for counter in range(len(playerWalkR)): #Boucle pour afficher chaque frame de l'animation 1 par 1.
+                                walkR = playerWalkR[int(counter)]#WalkR est une variable contenant l'image a afficher. PlayerWalkR est une liste contenant toutes les frames de marche
+                                counter = counter + 1
+                                screen.blit(crimeSceneBG, (0, 0)) #On blit tout ce qu'il faut.
+                                if showFlowerPot==True: #On vérifie si le pot de fleur n'a pas été récupéré
+                                    screen.blit(flowerPot1, (523, 417))
 
-                            playerX = playerX + 40 #Apres avoir blit la frame on ajoute 40 a la position du joueur
-                            boundaries() #On vérifie si le joueur n'essaie pas de sortir.
-                            screen.blit(walkR, (playerX, 350)) #On affiche le joueur
-                            pygame.display.update() #On rafraichit l'ecran
-                            time.sleep(0.2) #On attends 0.2s afin de rendre l'animation realiste.
+                                playerX = playerX + 40 #Apres avoir blit la frame on ajoute 40 a la position du joueur
+                                boundaries() #On vérifie si le joueur n'essaie pas de sortir.
+                                screen.blit(walkR, (playerX, 350)) #On affiche le joueur
+                                pygame.display.update() #On rafraichit l'ecran
+                                time.sleep(0.2) #On attends 0.2s afin de rendre l'animation realiste.
+
+                        else:
+                            for counter in range(len(playerWalkL)): #C'est presque la meme chose qu'au dessus
+                                walkL = playerWalkL[int(counter)] #WalkL est une variable contenant l'image a afficher. PlayerWalkL est une liste contenant toutes les frames de marche
+                                counter = counter + 1
+                                screen.blit(crimeSceneBG, (0, 0)) #On print tout ce qu'il faut.
+                                if showFlowerPot==True: #On vérifie si le pot de fleur n'a pas été récupéré
+                                    screen.blit(flowerPot1, (523, 417))
+                                playerX = playerX - 40 #Apres avoir blit la frame on ajoute 40 a la position du joueur
+                                boundaries()
+                                screen.blit(walkL, (playerX, 350))
+                                pygame.display.update()
+                                time.sleep(0.2)
+
 
                     else:
-                        for counter in range(len(playerWalkL)): #C'est presque la meme chose qu'au dessus
-                            walkL = playerWalkL[int(counter)] #WalkL est une variable contenant l'image a afficher. PlayerWalkL est une liste contenant toutes les frames de marche
-                            counter = counter + 1
-                            screen.blit(crimeSceneBG, (0, 0)) #On print tout ce qu'il faut.
-                            if showFlowerPot==True: #On vérifie si le pot de fleur n'a pas été récupéré
+                        if walkingRight==False: #On verifie dans quel sens s'orrienter
+                            if showFlowerPot == True:  # On vérifie si le pot de fleur n'a pas été récupéré
                                 screen.blit(flowerPot1, (523, 417))
-                            playerX = playerX - 40 #Apres avoir blit la frame on ajoute 40 a la position du joueur
-                            boundaries()
-                            screen.blit(walkL, (playerX, 350))
-                            pygame.display.update()
-                            time.sleep(0.2)
-
-
-                else:
-                    if walkingRight==False: #On verifie dans quel sens s'orrienter
-                        if showFlowerPot == True:  # On vérifie si le pot de fleur n'a pas été récupéré
-                            screen.blit(flowerPot1, (523, 417))
-                        screen.blit(playerImgL,(playerX, 350))
+                            screen.blit(playerImgL,(playerX, 350))
                 
-                    else: #Si l'on ne doit pas s'orrienter a droite alors logiquement il faut aller a gauche.
-                        if showFlowerPot == True:  # On vérifie si le pot de fleur n'a pas été récupéré
-                            screen.blit(flowerPot1, (523, 417))
-                        screen.blit(playerImgR, (playerX, 350))
+                        else: #Si l'on ne doit pas s'orrienter a droite alors logiquement il faut aller a gauche.
+                            if showFlowerPot == True:  # On vérifie si le pot de fleur n'a pas été récupéré
+                                screen.blit(flowerPot1, (523, 417))
+                            screen.blit(playerImgR, (playerX, 350))
 
-            pressE=False
+                pressE=False
     
-            print("player x=",playerX)
-            if playerX<= 670 and playerX>= 517:
+                print("player x=",playerX)
+                if playerX<= 670 and playerX>= 517:
 
-                toprint=dialogueFont.render("press e to inspect", True, (255, 255, 255))
-                pressE=True
-                bushes= True
-                screen.blit(toprint, (523, 417))
-                toprint=dialogueFont.render("press e to inspect", True, (255, 255, 255))
-                pressEprint=True
-                screen.blit(toprint, (523, 417))
-                pygame.display.update()
+                    toprint=dialogueFont.render("press e to inspect", True, (255, 255, 255))
+                    pressE=True
+                    bushes= True
+                    screen.blit(toprint, (523, 417))
+                    toprint=dialogueFont.render("press e to inspect", True, (255, 255, 255))
+                    pressEprint=True
+                    screen.blit(toprint, (523, 417))
+                    pygame.display.update()
         
-            elif playerX<=210 and playerX>=20:
-                toprint = dialogueFont.render("press e to inspect", True, (255, 255, 255))
-                screen.blit(toprint, (523, 417))
-                stopsign=True
-                pressE = True
+                elif playerX<=210 and playerX>=20:
+                    toprint = dialogueFont.render("press e to inspect", True, (255, 255, 255))
+                    screen.blit(toprint, (523, 417))
+                    stopsign=True
+                    pressE = True
 
-                #Ajouter les différents éléments à inspecter ici.
+                    #Ajouter les différents éléments à inspecter ici.
         
-            else:
-                pygame.display.update()
+                else:
+                    pygame.display.update()
         
-            TalkingAbout=False
-            if pressE==True:
-                print("can press e")
-                keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
-                if keys[pygame.K_e]:  # Si la valeur de la clé K_RIGHT est vraie:
-                    print("e.click")
-                    #playerX = 5
-                    TalkingAbout= True
-                    if bushes== True: #On vérifie quel dialogue lancer ici le dialogue bushes
-                        print("trying to display")
+                TalkingAbout=False
+                if pressE==True:
+                    print("can press e")
+                    keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
+                    if keys[pygame.K_e]:  # Si la valeur de la clé K_RIGHT est vraie:
+                        print("e.click")
+                        #playerX = 5
+                        TalkingAbout= True
+                        if bushes== True: #On vérifie quel dialogue lancer ici le dialogue bushes
+                            print("trying to display")
                     
-                        temporaryProgress=0
-                        show_walk= False
-                        taklingabout= True
+                            temporaryProgress=0
+                            show_walk= False
+                            taklingabout= True
                     
                 
                 
