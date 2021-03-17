@@ -2,9 +2,15 @@ from typing import Any, Union
 
 import pygame
 from game import *
+
+
+progress=0
+
+
 #Background
 crimeSceneBG = pygame.image.load("assets/backgrounds/Game_First_Scene_bigger_res.png")
 MenuBackground = pygame.image.load("assets/backgrounds/Menu_Background_Game_First_Scene_bigger_res_.png")
+keyMultiplier = 0
 
 class Menu():
     def __init__(self, game):
@@ -82,7 +88,6 @@ class MainMenu(Menu):  # making sure we can use the variables.
                 self.game.curr_menu = self.game.credits
             self.run_display = False
 
-
 class OptionsMenu(Menu):        #positioning the text for the options menu
     def __init__(self, game):
         Menu.__init__(self, game)
@@ -90,6 +95,7 @@ class OptionsMenu(Menu):        #positioning the text for the options menu
         self.volx, self.voly = self.mid_w, self.mid_h + 20
         self.controlsx, self.controlsy = self.mid_w, self.mid_h + 40
         self.cursor_rect.midtop = (self.volx + self.offset, self.voly)
+        
 
     def display_menu(self):     #displaying the text where it should be
         self.run_display = True
@@ -98,10 +104,21 @@ class OptionsMenu(Menu):        #positioning the text for the options menu
             self.check_imput()
             self.game.display.blit(MenuBackground,(0, 0))       #displaying backgound
             self.game.draw_text('Options', 50, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 200)
-            self.game.draw_text("You have no options,", 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 -50)
-            self.game.draw_text("just play the game! :)", 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 +0)
+            self.game.draw_text("Enter a progress number", 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 -50)
+            self.game.draw_text("and press enter", 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 +0)
+            self.game.draw_text("to skip to where you left off", 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 +50)
             self.game.draw_text("Press Backspace to go back to the Main Menu", 10, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 +200)
             self.blit_screen()
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_KP0]:
+                progress = progress + 0*10**keyMultiplier
+                keyMultiplier+=1
+                print(progress)
+            if keys[pygame.K_KP1]:
+                progress = progress + 1*10**keyMultiplier
+                keyMultiplier+=1
+                print(progress)
+                
 
     def check_imput(self):
         if self.game.BACK_KEY:      #takes you back to Main Menu
