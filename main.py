@@ -325,25 +325,40 @@ while running:
             show_walk = True
 
         if progress == 10:  # phase d'enquete
-            if inventory == True:
-                screen.blit(inventaire, (320, 40))
+
+            #---------------------------------------------------------------------------------------------------------
+            #Cette partie du code vérifie si l'inventaire n'est pas déja ouvert, et si il est déja ouvert, il le ferme
+
+            if inventory == True:   #vérifie si l'inventaire n'est pas déja ouvert
+                screen.blit(inventaire, (320, 40))  #crée un rendu de l'image de l'inventaire
+                if kbushes == True:
+                    screen.blit(flowerPot1, (409, 365))
 
                 keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
                 if keys[pygame.K_TAB]:  # Si la valeur de la clé K_TAB est vraie:
                     print("TAB.click")
-                    inventory = False
+                    inventory = False   #la valeur False indique que l'inventaire doit maintenant être fermé
+                    kbushes = False
                     time.sleep(0.2)  # afin de ne pas prendre en compte un double press
 
-                pygame.display.update()
 
+                pygame.display.update() #affiche les rendus
 
+            # Fin de la première partie du code inventaire
+            # ---------------------------------------------------------------------------------------------------------
+            # Cette partie est déclenchée quand inventory!=True (quand l'inventaire est fermé), et ouvre l'inventaire avec inventory=True
 
             else:
                 keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
                 if keys[pygame.K_TAB]:  # Si la valeur de la clé K_TAB est vraie:
                     print("TAB.click")
-                    inventory = True
+                    inventory = True    #la valeur True indique que l'inventaire doit maintenant être ounvert
                     time.sleep(0.2)  # afin de ne pas prendre en compte un double press
+                    kbushes = True
+
+
+            # Fin de la deuxième partie du code inventaire
+            # ---------------------------------------------------------------------------------------------------------
 
                 if show_walk:
                     walking_function()
