@@ -85,6 +85,10 @@ flowerPot2 = pygame.image.load("assets/backgrounds/flower_pot_2.png").convert_al
 flowerPot3 = pygame.image.load("assets/backgrounds/flower_pot_3.png").convert_alpha()
 flowerPot4 = pygame.image.load("assets/backgrounds/flower_pot_4.png").convert_alpha()
 
+#Musique:
+pygame.mixer.music.load("assets/sound/Music/Menu Theme.mp3")
+pygame.mixer.music.play(loops=-1)
+
 # Le son n'est pas implemente pour l'instant.
 # sound
 # def m_buzzing():
