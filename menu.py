@@ -5,12 +5,92 @@ from game import *
 
 
 progress=0
+print("progress initialised")
+keyMultiplier=0
 
+
+Reminder=0
+Reverse=0
+Number=0
 
 #Background
 crimeSceneBG = pygame.image.load("assets/backgrounds/Game_First_Scene_bigger_res.png")
 MenuBackground = pygame.image.load("assets/backgrounds/Menu_Background_Game_First_Scene_bigger_res_.png")
 keyMultiplier = 0
+
+def passwordProgress():
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_KP0]:
+        global progress
+        global keyMultiplier
+        progress = progress + 0 * 10 ** keyMultiplier
+        keyMultiplier += 1
+        time.sleep(0.2)
+        print(progress)
+    if keys[pygame.K_KP1]:
+        progress = progress + 1 * 10 ** keyMultiplier
+        keyMultiplier += 1
+        time.sleep(0.2)
+        print(progress)
+    if keys[pygame.K_KP2]:
+        progress = progress + 2 * 10 ** keyMultiplier
+        keyMultiplier += 1
+        time.sleep(0.2)
+        print(progress)
+    if keys[pygame.K_KP3]:
+        progress = progress + 3 * 10 ** keyMultiplier
+        keyMultiplier += 1
+        time.sleep(0.2)
+        print(progress)
+    if keys[pygame.K_KP4]:
+        progress = progress + 4 * 10 ** keyMultiplier
+        keyMultiplier += 1
+        time.sleep(0.2)
+        print(progress)
+    if keys[pygame.K_KP5]:
+        progress = progress + 5 * 10 ** keyMultiplier
+        keyMultiplier += 1
+        time.sleep(0.2)
+        print(progress)
+    if keys[pygame.K_KP6]:
+        progress = progress + 6 * 10 ** keyMultiplier
+        keyMultiplier += 1
+        time.sleep(0.2)
+        print(progress)
+    if keys[pygame.K_KP7]:
+        progress = progress + 7 * 10 ** keyMultiplier
+        keyMultiplier += 1
+        time.sleep(0.2)
+        print(progress)
+    if keys[pygame.K_KP8]:
+        progress = progress + 8 * 10 ** keyMultiplier
+        keyMultiplier += 1
+        time.sleep(0.2)
+        print(progress)
+    if keys[pygame.K_KP9]:
+        progress = progress + 9 * 10 ** keyMultiplier
+        keyMultiplier += 1
+        time.sleep(0.2)
+        print(progress)
+
+    if keys[pygame.K_RETURN]:
+        global Reminder
+        global Reverse
+        global Number
+
+        Number=progress
+        while (Number > 0):
+            Reminder = Number % 10
+            Reverse = (Reverse * 10) + Reminder
+            Number = Number // 10
+        progress=Number
+        print(progress)
+
+        #START THE GAME
+
+
+
+
 
 class Menu():
     def __init__(self, game):
@@ -109,15 +189,9 @@ class OptionsMenu(Menu):        #positioning the text for the options menu
             self.game.draw_text("to skip to where you left off", 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 +50)
             self.game.draw_text("Press Backspace to go back to the Main Menu", 10, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 +200)
             self.blit_screen()
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_KP0]:
-                progress = progress + 0*10**keyMultiplier
-                keyMultiplier+=1
-                print(progress)
-            if keys[pygame.K_KP1]:
-                progress = progress + 1*10**keyMultiplier
-                keyMultiplier+=1
-                print(progress)
+            #SYTEME DE MOT DE PASSE
+            passwordProgress()
+
                 
 
     def check_imput(self):

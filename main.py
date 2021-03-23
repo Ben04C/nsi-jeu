@@ -338,7 +338,6 @@ while running:
                 if keys[pygame.K_TAB]:  # Si la valeur de la clé K_TAB est vraie:
                     print("TAB.click")
                     inventory = False   #la valeur False indique que l'inventaire doit maintenant être fermé
-                    kbushes = False
                     time.sleep(0.2)  # afin de ne pas prendre en compte un double press
 
 
@@ -354,7 +353,6 @@ while running:
                     print("TAB.click")
                     inventory = True    #la valeur True indique que l'inventaire doit maintenant être ounvert
                     time.sleep(0.2)  # afin de ne pas prendre en compte un double press
-                    kbushes = True
 
 
             # Fin de la deuxième partie du code inventaire

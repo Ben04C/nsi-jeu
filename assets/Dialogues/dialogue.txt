@@ -1,0 +1,41 @@
+Dialogue:
+
+			BEFORE ANALYSIS
+
+Policeman:	Good evening Detective, glad you could make it at this hour.
+
+Detective:	Why is it always me who is called up on times like these, I was in the middle of my goodnights rest.
+
+Policeman:	I appologise but the matter is urgent.
+
+Detective:	alright then, let's crack on with this shall we.
+
+Detective:	Hand me the files
+
+Policeman:	Here you go sir.
+
+Detective:	Thank you, let's take a look.	
+
+Detective:	hmmmm...
+
+Detective:	I see...
+
+Detective:	Let's investigat the Crime Scene.
+
+			AFTER ANALYSIS
+
+Policeman:	So did you find anything?	
+
+Detective:	Indeed, this flower pot seems to have a crack in it.
+
+Policeman:	Ok, what does that mean?	
+
+Detective:	Well, I believe this flower pot might have been used in the crime.
+
+Detective:	Perhaps it made the final strike
+
+Policeman:	I see, very well spotted.	
+
+Detective:	Lets take another look.
+
+			AFTER 2ND ANALYSIS
