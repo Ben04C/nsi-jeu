@@ -3,11 +3,12 @@ import pygame
 import time
 from menu import *
 from pygame.locals import *
-
+start=False
 
 class Game():
     def __init__(self):        #defining all the properties of the game menu
         pygame.init()
+
         self.running, self.playing = True, False        #check if game is being run and if user is playing
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY, = False, False, False, False     #defining all the keys used in the menu
         self.DISPLAY_W, self.DISPLAY_H = 1280, 720      #setting the dimensions of the menu
@@ -22,6 +23,11 @@ class Game():
         self.curr_menu = self.main_menu
         
     def game_loop(self):        #defining the loop that displays the menu
+        print("loop")
+        if start:
+            print("closing")
+            self.running, self.playing = False, False
+            self.playing = False
         while self.playing:
             self.check_events()     #check if keys are pressed
             if self.START_KEY:
@@ -37,6 +43,15 @@ class Game():
 
 
     def check_events(self):
+        if start:
+            print("closing")
+            self.running, self.playing = False, False
+            self.playing = False
+        if start:
+            print("closing")
+            self.running, self.playing = False, False
+            self.curr_menu.run_display = False
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:       #checks whether to end program or not
                 self.running, self.playing = False, False
