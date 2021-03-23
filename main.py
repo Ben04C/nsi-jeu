@@ -70,7 +70,7 @@ PoliceX = 400
 PoliceY = 480
 
 # Backgrounds
-crimeSceneBG = pygame.image.load("assets/backgrounds/Game_First_Scene_bigger_res.png").convert()
+crimeSceneBG = pygame.image.load("assets/backgrounds/Game_First_Scene_bigger_res_flowerpot1_missing.png").convert()
 
 # UI:
 textbox = pygame.image.load("assets/UI/textbox_full_res.png").convert_alpha()
@@ -227,23 +227,6 @@ while running:
                 inventory = False
             pygame.display.update()
 
-
-    # if event.type == KEYDOWN:
-    # if event.key == K_TAB and inventory == False:  # on vérifie si TAB est pressé et si l'inventaire est fermé
-    # inventory = True  # indique que l'inventaire est maintenant ouvert
-    # screen.blit(inventaire, (320, 40))  # L'image de l'inventaire s'affiche désormait à l'écran (inventaire est l'image, et inventory est le booléen!)
-    # pygame.display.update()
-    # if event.key == K_TAB and inventory == True:  # on vérifie si TAB est pressé et si l'inventaire est ouvert
-    # inventory = False  # indique que l'inventaire est maintenant fermé
-    # screen.blit(crimeSceneBG, (0, 0))
-    # pygame.display.update()
-
-    # if inventory == True:
-    # screen.blit(inventaire, (320, 40))
-    # pygame.display.update()
-    # if kbushes == True and event.key == K_TAB:
-    # screen.blit(flowerPot1, (409, 365))
-    # pygame.display.update()
 
     else:
         if progress == 0:
