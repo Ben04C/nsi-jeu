@@ -2,8 +2,7 @@ from typing import Any, Union
 
 import pygame
 from game import *
-firstTime = True
-
+start=False
 
 insiderprogress=0
 print("progress initialised")
@@ -72,7 +71,7 @@ def passwordProgress():
         time.sleep(0.2)
         print(insiderprogress)
     if keys[pygame.K_KP8]:
-        insiderprogress = v + 8 * 10 ** keyMultiplier
+        insiderprogress = insiderprogress + 8 * 10 ** keyMultiplier
         keyMultiplier += 1
         time.sleep(0.2)
         print(insiderprogress)
