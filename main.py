@@ -331,8 +331,8 @@ while running:
 
             if inventory == True:   #vérifie si l'inventaire n'est pas déja ouvert
                 screen.blit(inventaire, (320, 40))  #crée un rendu de l'image de l'inventaire
-                if kbushes == True:
-                    screen.blit(flowerPot1, (409, 365))
+                if kbushes == True:     #vérifie si on a inspecté le pot de fleur
+                    screen.blit(flowerPot1, (409, 365))     #crée un rendu de l'image pot de fleur
 
                 keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
                 if keys[pygame.K_TAB]:  # Si la valeur de la clé K_TAB est vraie:
