@@ -2,7 +2,6 @@ import time
 import pygame
 
 from pygame.locals import *
-
 from game import Game
 
 j = 0
@@ -40,7 +39,10 @@ pygame.display.set_caption("Cyberpunk style game")
 icon = pygame.image.load("assets/detective-hat.png")
 pygame.display.set_icon(icon)
 
-progress = 0  # Progress is going to be the save state of the game. When a scene is finished there will be progress+=1 and the scene will change with an if progress ==.
+
+from menu import progress
+print("progress is  ",progress)
+#progress = 0  # Progress is going to be the save state of the game. When a scene is finished there will be progress+=1 and the scene will change with an if progress ==.
 # Assets:
 dialogueFont = pygame.font.Font("assets/fonts/EightBitDragon-anqx.ttf", 15)
 
