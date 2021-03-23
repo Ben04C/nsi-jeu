@@ -3,7 +3,7 @@ from typing import Any, Union
 import pygame
 from game import *
 start=False
-
+progress=0
 insiderprogress=0
 print("progress initialised")
 keyMultiplier=0
@@ -85,6 +85,7 @@ def passwordProgress():
         time.sleep(0.2)
         global Reminder
         global Reverse
+        global progress
         global Number
         print(insiderprogress)
         Number=insiderprogress

@@ -50,7 +50,7 @@ class Game():
         if start:
             print("closing")
             self.running, self.playing = False, False
-            self.curr_menu.run_display = False5
+            self.curr_menu.run_display = False
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:       #checks whether to end program or not
