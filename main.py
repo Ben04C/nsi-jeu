@@ -8,6 +8,7 @@ from game import Game
 j = 0
 g = Game()
 animateWalking = False
+keyMultiplier = 0
 
 while g.running:  # Executs the menu
     g.curr_menu.display_menu()
