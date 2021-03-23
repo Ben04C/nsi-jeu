@@ -105,7 +105,7 @@ temporaryProgress = 0
 taklingabout = False
 showFlowerPot = True
 stopsign = False
-inventory = False  # par défaut l'inventaire est fermé
+inventory = False   # par défaut l'inventaire est fermé
 Repeat = True   #tant que le pot de fleur n'a pas été inspecté, Repeat = True. Une fois qu'il a été inspecté, la variable devient Repeat = False comme ça on ne peux pas inspecter deux fois le pot de fleur.
 
 # knowledge init variables:
