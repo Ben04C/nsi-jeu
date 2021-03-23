@@ -104,6 +104,7 @@ taklingabout = False
 showFlowerPot = True
 stopsign = False
 inventory = False  # par défaut l'inventaire est fermé
+Repeat = True   #tant que le pot de fleur n'a pas été inspecté, Repeat = True. Une fois qu'il a été inspecté, la variable devient Repeat = False comme ça on ne peux pas inspecter deux fois le pot de fleur.
 
 # knowledge init variables:
 kbushes = False
@@ -394,7 +395,7 @@ while running:
                 pressE = False
 
                 print("player x=", playerX)
-                if playerX <= 670 and playerX >= 517:
+                if playerX <= 670 and playerX >= 517 and Repeat == True:   #si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le pot de fleur, faire:
 
                     toprint = dialogueFont.render("press e to inspect", True, (255, 255, 255))
                     pressE = True
@@ -405,7 +406,7 @@ while running:
                     screen.blit(toprint, (523, 417))
                     pygame.display.update()
 
-                elif playerX <= 210 and playerX >= 20:
+                elif playerX <= 210 and playerX >= 20 and Repeat == True:   #si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le pot de fleur, faire:
                     toprint = dialogueFont.render("press e to inspect", True, (255, 255, 255))
                     screen.blit(toprint, (523, 417))
                     stopsign = True
@@ -420,10 +421,11 @@ while running:
                 if pressE == True:
                     print("can press e")
                     keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
-                    if keys[pygame.K_e]:  # Si la valeur de la clé K_RIGHT est vraie:
+                    if keys[pygame.K_e] and Repeat == True:  # Si la valeur de la clé K_RIGHT est vraie:
                         print("e.click")
                         # playerX = 5
                         TalkingAbout = True
+                        Repeat = False  #une fois qu'on a inspecté le pot de fleur une première fois, Repeat = False comme ça on ne peut pas l'inspecter une deuxième fois
                         if bushes == True:  # On vérifie quel dialogue lancer ici le dialogue bushes
                             print("trying to display")
 
