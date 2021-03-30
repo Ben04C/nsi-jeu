@@ -27,76 +27,78 @@ def returnFalse():
 
 
 def passwordProgress():
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_KP0]:
+    keys = pygame.key.get_pressed()#On fait un dictionnaire avec les valeurs des touches enfoncees.
+    #La suite du code est la meme, on change juste la valeur avec celle de la touche du keypad.
+    if keys[pygame.K_KP0]:#Si la valeur de K_KP0 dans le dictionnaire keys est vraie:
         global insiderprogress
         global keyMultiplier
-        insiderprogress = insiderprogress + 0 * 10 ** keyMultiplier
-        keyMultiplier += 1
-        time.sleep(0.2)
+        insiderprogress = insiderprogress + 0 * 10 ** keyMultiplier #On ajoute le a une variable de progress temporaire de la facon n*10**k ou n est le numéro de la touche et k est un nombre incrémentant de 1 lorsque une touche est presee.
+        keyMultiplier += 1#On increment keymultiplier de 1 (aussi appele k mais uniquement dans les commentaires)
+        time.sleep(0.1)#Afin de ne pas prendre en compte en double press on attend quelques secondes.
         print(insiderprogress)
     if keys[pygame.K_KP1]:
         insiderprogress = insiderprogress + 1 * 10 ** keyMultiplier
         keyMultiplier += 1
-        time.sleep(0.2)
+        time.sleep(0.1)
         print(insiderprogress)
     if keys[pygame.K_KP2]:
         insiderprogress = insiderprogress + 2 * 10 ** keyMultiplier
         keyMultiplier += 1
-        time.sleep(0.2)
+        time.sleep(0.1)
         print(insiderprogress)
     if keys[pygame.K_KP3]:
         insiderprogress = insiderprogress + 3 * 10 ** keyMultiplier
         keyMultiplier += 1
-        time.sleep(0.2)
+        time.sleep(0.1)
         print(insiderprogress)
     if keys[pygame.K_KP4]:
         insiderprogress = insiderprogress + 4 * 10 ** keyMultiplier
         keyMultiplier += 1
-        time.sleep(0.2)
+        time.sleep(0.1)
         print(insiderprogress)
     if keys[pygame.K_KP5]:
         insiderprogress = insiderprogress + 5 * 10 ** keyMultiplier
         keyMultiplier += 1
-        time.sleep(0.2)
+        time.sleep(0.1)
         print(insiderprogress)
     if keys[pygame.K_KP6]:
         insiderprogress = insiderprogress + 6 * 10 ** keyMultiplier
         keyMultiplier += 1
-        time.sleep(0.2)
+        time.sleep(0.1)
         print(insiderprogress)
     if keys[pygame.K_KP7]:
         insiderprogress = insiderprogress + 7 * 10 ** keyMultiplier
         keyMultiplier += 1
-        time.sleep(0.2)
+        time.sleep(0.1)
         print(insiderprogress)
     if keys[pygame.K_KP8]:
         insiderprogress = insiderprogress + 8 * 10 ** keyMultiplier
         keyMultiplier += 1
-        time.sleep(0.2)
+        time.sleep(0.1)
         print(insiderprogress)
     if keys[pygame.K_KP9]:
         insiderprogress = insiderprogress + 9 * 10 ** keyMultiplier
         keyMultiplier += 1
-        time.sleep(0.2)
+        time.sleep(0.1)
         print(insiderprogress)
-
-    if keys[pygame.K_TAB]:
-        time.sleep(0.2)
+    #Fin du code similaire
+    
+    if keys[pygame.K_TAB]:#Si la touche tab (le joueur a termine d'entrer son progress)
+        time.sleep(0.1)
         global Reminder
         global Reverse
         global progress
         global Number
         print(insiderprogress)
-        Number=insiderprogress
-        while (Number > 0):
+        Number=insiderprogress#On met le progress temporaire dans une variable temporaire
+        while (Number > 0):#Comme keyMultiplier (aussi appele k dans les commentaires) incrémente il faut inverser progress afin d'avoir la valeur qu'a saisi le joueur.
             Reminder = Number % 10
             Reverse = (Reverse * 10) + Reminder
             Number = Number // 10
-        progress=Reverse
+        progress=Reverse #On assigne a la variable progress qui sera utilise dans main le numero saisi.
         print(progress)
         global start
-        start=True
+        start=True#On met la variable start a True, on a envie fermer le menu.
         #START THE GAME
 
 
@@ -197,7 +199,7 @@ class OptionsMenu(Menu):        #positioning the text for the options menu
             self.game.display.blit(MenuBackground,(0, 0))       #displaying backgound
             self.game.draw_text('Options', 50, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 200)
             self.game.draw_text("Enter a progress number", 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 -50)
-            self.game.draw_text("and press enter", 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 +0)
+            self.game.draw_text("and press TAB", 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 +0)
             self.game.draw_text("to skip to where you left off", 30, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 +50)
             self.game.draw_text("Press Backspace to go back to the Main Menu", 10, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 +200)
             self.blit_screen()

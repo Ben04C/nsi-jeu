@@ -17,7 +17,6 @@ while g.running:  # Executs the menu
 
 from csv_dialogue import MainDialogues, FlowerPotDialogue
 
-print(MainDialogues)
 
 
 pygame.init()
@@ -35,7 +34,7 @@ screen = pygame.display.set_mode((1280, 720))
 message_end_time = 0
 
 # Title and Icon
-pygame.display.set_caption("Cyberpunk style game")
+pygame.display.set_caption("Investigation on a budget")
 icon = pygame.image.load("assets/detective-hat.png")
 pygame.display.set_icon(icon)
 
@@ -195,7 +194,8 @@ def walking_function():  # verifie si le joueur est en train de marcher et dans 
                 walkingRight = True  # Orientation du joueur
             if event.key == K_LEFT:
                 walkingRight = False
-    screen.blit(flowerPot1, (523, 450))
+    if kbushes == False:
+        screen.blit(flowerPot1, (523, 450))
     screen.blit(crimeSceneBG, (0, 0))
 
 
@@ -363,7 +363,7 @@ while running:
                                     counter)]  # WalkR est une variable contenant l'image a afficher. PlayerWalkR est une liste contenant toutes les frames de marche
                                 counter = counter + 1
                                 screen.blit(crimeSceneBG, (0, 0))  # On blit tout ce qu'il faut.
-                                if showFlowerPot == True:  # On vérifie si le pot de fleur n'a pas été récupéré
+                                if kbushes == False:  # On vérifie si le pot de fleur n'a pas été récupéré
                                     screen.blit(flowerPot1, (523, 417))
 
                                 playerX = playerX + 40  # Apres avoir blit la frame on ajoute 40 a la position du joueur
@@ -378,7 +378,7 @@ while running:
                                     counter)]  # WalkL est une variable contenant l'image a afficher. PlayerWalkL est une liste contenant toutes les frames de marche
                                 counter = counter + 1
                                 screen.blit(crimeSceneBG, (0, 0))  # On print tout ce qu'il faut.
-                                if showFlowerPot == True:  # On vérifie si le pot de fleur n'a pas été récupéré
+                                if kbushes == False:  # On vérifie si le pot de fleur n'a pas été récupéré
                                     screen.blit(flowerPot1, (523, 417))
                                 playerX = playerX - 40  # Apres avoir blit la frame on ajoute 40 a la position du joueur
                                 boundaries()
@@ -389,12 +389,12 @@ while running:
 
                     else:
                         if walkingRight == False:  # On verifie dans quel sens s'orrienter
-                            if showFlowerPot == True:  # On vérifie si le pot de fleur n'a pas été récupéré
+                            if kbushes == False:  # On vérifie si le pot de fleur n'a pas été récupéré
                                 screen.blit(flowerPot1, (523, 417))
                             screen.blit(playerImgL, (playerX, 350))
 
                         else:  # Si l'on ne doit pas s'orrienter a droite alors logiquement il faut aller a gauche.
-                            if showFlowerPot == True:  # On vérifie si le pot de fleur n'a pas été récupéré
+                            if kbushes == False:  # On vérifie si le pot de fleur n'a pas été récupéré
                                 screen.blit(flowerPot1, (523, 417))
                             screen.blit(playerImgR, (playerX, 350))
 
@@ -412,11 +412,12 @@ while running:
                     screen.blit(toprint, (523, 417))
                     pygame.display.update()
 
-                elif playerX <= 210 and playerX >= 20 and Repeat == True:   #si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le pot de fleur, faire:
+                elif playerX <= 210 and playerX >= 20 and Repeat == True:   #si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le panneau, faire:
                     toprint = dialogueFont.render("press e to inspect", True, (255, 255, 255))
-                    screen.blit(toprint, (523, 417))
+                    screen.blit(toprint, (200, 417))
                     stopsign = True
                     pressE = True
+                    pygame.display.update()
 
                     # Ajouter les différents éléments à inspecter ici.
 
@@ -438,6 +439,10 @@ while running:
                             temporaryProgress = 0
                             show_walk = False
                             taklingabout = True
+                        if stopsign == True:
+                            temporaryProgress = 0
+                            show_walk = False
+                            taklingabout = True
 
             if taklingabout:  # Le joueur inspecte le pot de fleurs et un dialoque se lance
                 print("hello")
@@ -448,25 +453,48 @@ while running:
                     if temporaryProgress == 0:
                         checkanykey()  # on vérifie si une touche est enfoncée
                         oftenusedD1()  # On met l'ecran de dialogue
-                        toprint = dialogueFont.render("Nice Bushes", True, (
+                        toprint = dialogueFont.render(FlowerPotDialogue[0], True, (
                         255, 255, 255))  # On affiche les dialogue de la meme maniere que dans le reste du jeu.
                         screen.blit(toprint, (250, 500))
 
-                    if temporaryProgress == 1:
+                    if temporaryProgress == 1:#Pareil qu'au dessus mais juste avec un indice plus grand.
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(
-                            "This flower pot seems to have a crack, Detective could we analyse these bushes", True,
+                            FlowerPotDialogue[1], True,
                             (255, 255, 255))
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 2:
                         checkanykey()
                         oftenusedD1()
-                        toprint = dialogueFont.render("Right away sir", True, (255, 255, 255))
+                        toprint = dialogueFont.render(FlowerPotDialogue[2], True, (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+                        
+                    if temporaryProgress == 3:
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(FlowerPotDialogue[3], True, (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+                    
+                    if temporaryProgress == 4:
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(FlowerPotDialogue[4], True, (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+                    
+                    if temporaryProgress == 5:
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(FlowerPotDialogue[5], True, (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+                    if temporaryProgress == 6:
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(FlowerPotDialogue[6], True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
 
-                    if temporaryProgress == 3:
+                    if temporaryProgress == 7:
                         showFlowerPot = False  # On arrete d'afficher le pot de fleur car il a ete recupere pour analyse.
                         tempProgress = 0  # On remet tout les parametres requis afin de retourner a la phase d'enquete.
                         taklingabout = False
@@ -475,3 +503,70 @@ while running:
                         progress = 5
                         show_walk = True
                         temProgress = False
+                        
+                        
+                        
+                elif stopsign:
+                    #Inspecting the signpost
+                    print("inspecting sign")
+                    if temporaryProgress == 0:
+                        checkanykey()  # on vérifie si une touche est enfoncée
+                        oftenusedD1()  # On met l'ecran de dialogue
+                        toprint = dialogueFont.render(FlowerPotDialogue[0], True, (
+                        255, 255, 255))  # On affiche les dialogue de la meme maniere que dans le reste du jeu.
+                        screen.blit(toprint, (250, 500))
+
+                    if temporaryProgress == 1:#Pareil qu'au dessus mais juste avec un indice plus grand.
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(
+                            FlowerPotDialogue[1], True,
+                            (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+
+                    if temporaryProgress == 2:
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(FlowerPotDialogue[2], True, (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+                        
+                    if temporaryProgress == 3:
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(FlowerPotDialogue[3], True, (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+                    
+                    if temporaryProgress == 4:
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(FlowerPotDialogue[4], True, (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+                    
+                    if temporaryProgress == 5:
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(FlowerPotDialogue[5], True, (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+                    if temporaryProgress == 6:
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(FlowerPotDialogue[6], True, (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+
+                    if temporaryProgress == 7:
+                        showFlowerPot = False  # On arrete d'afficher le pot de fleur car il a ete recupere pour analyse.
+                        tempProgress = 0  # On remet tout les parametres requis afin de retourner a la phase d'enquete.
+                        taklingabout = False
+                        bushes = False
+                        kbushes = True
+                        progress = 5
+                        show_walk = True
+                        temProgress = False
+        if progress > 10:
+            kbushes= True
+            progress=10
+            temProgress = False
+            show_walk = True
+            Repeat=False
+            
+            

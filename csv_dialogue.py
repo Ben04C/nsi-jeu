@@ -24,12 +24,5 @@ def dialogue():
     FlowerPotDialogue = FlowerPotDialogue[0]
     #end of FlowerPotDialogue
 
-    print(MainDialogues)
-    for i in range(0, len(MainDialogues)):
-        print(MainDialogues[i])
-
-
-    for i in range(0, len(FlowerPotDialogue)):
-        print(FlowerPotDialogue[i])
 
 dialogue()
