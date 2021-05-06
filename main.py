@@ -15,7 +15,7 @@ while g.running:  # Executs the menu
 
 # Initialisation
 
-from csv_dialogue import MainDialogues, FlowerPotDialogue
+from csv_dialogue import MainDialogues, FlowerPotDialogue, StopSignDialogue, Policeman_Before_Bush_Dialogue, Policeman_After_Bush_Dialogue
 
 
 
@@ -67,9 +67,9 @@ playerWalkL = [pygame.transform.flip(playerWalkR[0], True, False).convert_alpha(
                pygame.transform.flip(playerWalkR[2], True, False).convert_alpha(),
                pygame.transform.flip(playerWalkR[3], True, False).convert_alpha()]
 
-# PoliceImg = pygame.image.load("police.png")
-PoliceX = 400
-PoliceY = 480
+PoliceImg = pygame.image.load("assets\player\sprites\policeman\spr_policeman.png")
+PoliceX = 1099
+PoliceY = 345
 
 # Backgrounds
 crimeSceneBG = pygame.image.load("assets/backgrounds/Game_First_Scene_bigger_res_flowerpot1_missing.png").convert()
@@ -105,15 +105,22 @@ bushes = False
 tempProgress = True
 temProgress = False
 temporaryProgress = 0
-taklingabout = False
+talkingabout = False
 showFlowerPot = True
 stopsign = False
+policeman_afterbush = False
+policeman_beforebush = False
 inventory = False   # par défaut l'inventaire est fermé
-Repeat = True   #tant que le pot de fleur n'a pas été inspecté, Repeat = True. Une fois qu'il a été inspecté, la variable devient Repeat = False comme ça on ne peux pas inspecter deux fois le pot de fleur.
+repeat_flower = True   #tant que le pot de fleur n'a pas été inspecté, repeat_flower = True. Une fois qu'il a été inspecté, la variable devient repeat_flower = False comme ça on ne peux pas inspecter deux fois le pot de fleur.
+repeat_stopsign = True
+repeat_policeman_afterbush = True
+repeat_policeman_beforebush = True
 
 # knowledge init variables:
 kbushes = False
 kstopsign = False
+kpoliceman_afterbush = False
+kpoliceman_beforebush = False
 
 # dialogues:
 Dialogue1p = ["Policeman ;I am sorry to have warned you  this late but the matter is urgent !", "some other text"]
@@ -144,6 +151,7 @@ def oftenusedD1():  # This is a function that executes the lines of code that ar
     screen.blit(crimeSceneBG, (0, 0))
     screen.blit(playerDialogue, (0, 0))
     screen.blit(textbox, (200, 450))
+    screen.blit(PoliceImg, (PoliceX, PoliceY))
 
 
 def checkanykey():  # This function checks if any key is pressed on the keyboard.
@@ -197,10 +205,12 @@ def walking_function():  # verifie si le joueur est en train de marcher et dans 
     if kbushes == False:
         screen.blit(flowerPot1, (523, 450))
     screen.blit(crimeSceneBG, (0, 0))
+    screen.blit(PoliceImg, (PoliceX, PoliceY))
 
 
 def show_bg():
     screen.blit(crimeSceneBG, (0, 0))
+    screen.blit(PoliceImg, (PoliceX, PoliceY))
 
 
 def ToPrint(x):
@@ -363,6 +373,7 @@ while running:
                                     counter)]  # WalkR est une variable contenant l'image a afficher. PlayerWalkR est une liste contenant toutes les frames de marche
                                 counter = counter + 1
                                 screen.blit(crimeSceneBG, (0, 0))  # On blit tout ce qu'il faut.
+                                screen.blit(PoliceImg, (PoliceX, PoliceY))
                                 if kbushes == False:  # On vérifie si le pot de fleur n'a pas été récupéré
                                     screen.blit(flowerPot1, (523, 417))
 
@@ -378,6 +389,7 @@ while running:
                                     counter)]  # WalkL est une variable contenant l'image a afficher. PlayerWalkL est une liste contenant toutes les frames de marche
                                 counter = counter + 1
                                 screen.blit(crimeSceneBG, (0, 0))  # On print tout ce qu'il faut.
+                                screen.blit(PoliceImg, (PoliceX, PoliceY))
                                 if kbushes == False:  # On vérifie si le pot de fleur n'a pas été récupéré
                                     screen.blit(flowerPot1, (523, 417))
                                 playerX = playerX - 40  # Apres avoir blit la frame on ajoute 40 a la position du joueur
@@ -401,7 +413,7 @@ while running:
                 pressE = False
 
                 print("player x=", playerX)
-                if playerX <= 670 and playerX >= 517 and Repeat == True:   #si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le pot de fleur, faire:
+                if playerX <= 670 and playerX >= 517 and repeat_flower == True:   #si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le pot de fleur, faire:
 
                     toprint = dialogueFont.render("press e to inspect", True, (255, 255, 255))
                     pressE = True
@@ -412,14 +424,28 @@ while running:
                     screen.blit(toprint, (523, 417))
                     pygame.display.update()
 
-                elif playerX <= 210 and playerX >= 20 and Repeat == True:   #si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le panneau, faire:
+                elif playerX <= 210 and playerX >= 20 and repeat_stopsign == True:   #si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le panneau, faire:
                     toprint = dialogueFont.render("press e to inspect", True, (255, 255, 255))
                     screen.blit(toprint, (200, 417))
                     stopsign = True
                     pressE = True
                     pygame.display.update()
 
-                    # Ajouter les différents éléments à inspecter ici.
+                elif playerX <= 1149 and playerX >= 1010 and repeat_policeman_beforebush == True:  # si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le panneau, faire:
+                    toprint = dialogueFont.render("press e to talk to policeman", True, (255, 255, 255))
+                    screen.blit(toprint, (1010, 417))
+                    policeman_beforebush = True
+                    pressE = True
+                    pygame.display.update()
+
+                elif playerX <= 1149 and playerX >= 1010 and repeat_policeman_afterbush == True and kbushes == True:  # si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le panneau, faire:
+                    toprint = dialogueFont.render("press e to show findings", True, (255, 255, 255))
+                    screen.blit(toprint, (1010, 417))
+                    policeman_afterbush = True
+                    pressE = True
+                    pygame.display.update()
+
+                # Ajouter les différents éléments à inspecter ici.
 
                 else:
                     pygame.display.update()
@@ -428,23 +454,47 @@ while running:
                 if pressE == True:
                     print("can press e")
                     keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
-                    if keys[pygame.K_e] and Repeat == True:  # Si la valeur de la clé K_RIGHT est vraie:
+                    if keys[pygame.K_e] and repeat_stopsign == True:  # Si la valeur de la clé K_RIGHT est vraie:
                         print("e.click")
                         # playerX = 5
                         TalkingAbout = True
-                        Repeat = False  #une fois qu'on a inspecté le pot de fleur une première fois, Repeat = False comme ça on ne peut pas l'inspecter une deuxième fois
-                        if bushes == True:  # On vérifie quel dialogue lancer ici le dialogue bushes
-                            print("trying to display")
-
-                            temporaryProgress = 0
-                            show_walk = False
-                            taklingabout = True
+                        repeat_stopsign = False
                         if stopsign == True:
                             temporaryProgress = 0
                             show_walk = False
-                            taklingabout = True
+                            talkingabout = True
+                    elif keys[pygame.K_e] and repeat_policeman_beforebush == True:  # Si la valeur de la clé K_RIGHT est vraie:
+                        print("e.click")
+                        # playerX = 5
+                        TalkingAbout = True
+                        repeat_policeman_beforebush = False
+                        if policeman_beforebush == True:
+                            temporaryProgress = 0
+                            show_walk = False
+                            talkingabout = True
+                    elif keys[pygame.K_e] and repeat_flower == True:  # Si la valeur de la clé K_RIGHT est vraie:
+                        print("e.click")
+                        # playerX = 5
+                        TalkingAbout = True
+                        repeat_flower = False  # une fois qu'on a inspecté le pot de fleur une première fois, repeat_flower = False comme ça on ne peut pas l'inspecter une deuxième fois
+                        if bushes == True:  # On vérifie quel dialogue lancer ici le dialogue bushes
+                            print("trying to display")
+                            temporaryProgress = 0
+                            show_walk = False
+                            talkingabout = True
+                    elif keys[pygame.K_e] and repeat_policeman_afterbush == True and kbushes == True:  # Si la valeur de la clé K_RIGHT est vraie:
+                        print("e.click")
+                        # playerX = 5
+                        TalkingAbout = True
+                        repeat_policeman_afterbush = False
+                        if policeman_afterbush == True:
+                            temporaryProgress = 0
+                            show_walk = False
+                            talkingabout = True
+                    pressE = False
 
-            if taklingabout:  # Le joueur inspecte le pot de fleurs et un dialoque se lance
+
+            if talkingabout:  # Le joueur inspecte le pot de fleurs et un dialoque se lance
                 print("hello")
                 oftenusedD1()
                 temProgress = True
@@ -488,31 +538,22 @@ while running:
                         oftenusedD1()
                         toprint = dialogueFont.render(FlowerPotDialogue[5], True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
-                    if temporaryProgress == 6:
-                        checkanykey()
-                        oftenusedD1()
-                        toprint = dialogueFont.render(FlowerPotDialogue[6], True, (255, 255, 255))
-                        screen.blit(toprint, (250, 500))
-
-                    if temporaryProgress == 7:
                         showFlowerPot = False  # On arrete d'afficher le pot de fleur car il a ete recupere pour analyse.
                         tempProgress = 0  # On remet tout les parametres requis afin de retourner a la phase d'enquete.
-                        taklingabout = False
+                        talkingabout = False
                         bushes = False
                         kbushes = True
                         progress = 5
                         show_walk = True
                         temProgress = False
                         
-                        
-                        
-                elif stopsign:
+                elif stopsign == True:
                     #Inspecting the signpost
                     print("inspecting sign")
                     if temporaryProgress == 0:
                         checkanykey()  # on vérifie si une touche est enfoncée
                         oftenusedD1()  # On met l'ecran de dialogue
-                        toprint = dialogueFont.render(FlowerPotDialogue[0], True, (
+                        toprint = dialogueFont.render(StopSignDialogue[0], True, (
                         255, 255, 255))  # On affiche les dialogue de la meme maniere que dans le reste du jeu.
                         screen.blit(toprint, (250, 500))
 
@@ -520,53 +561,112 @@ while running:
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(
-                            FlowerPotDialogue[1], True,
+                            StopSignDialogue[1], True,
+                            (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+                        tempProgress = 0  # On remet tout les parametres requis afin de retourner a la phase d'enquete.
+                        talkingabout = False
+                        stopsign = False
+                        kstopsign = True
+                        progress = 5
+                        show_walk = True
+                        temProgress = False
+
+                elif policeman_beforebush == True:
+                    # Talking to policeman
+                    print("talking to policeman")
+                    if temporaryProgress == 0:
+                        checkanykey()  # on vérifie si une touche est enfoncée
+                        oftenusedD1()  # On met l'ecran de dialogue
+                        toprint = dialogueFont.render(Policeman_Before_Bush_Dialogue[0], True, (
+                            255, 255, 255))  # On affiche les dialogue de la meme maniere que dans le reste du jeu.
+                        screen.blit(toprint, (250, 500))
+
+                    if temporaryProgress == 1:  # Pareil qu'au dessus mais juste avec un indice plus grand.
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(
+                            Policeman_Before_Bush_Dialogue[1], True,
                             (255, 255, 255))
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 2:
                         checkanykey()
                         oftenusedD1()
-                        toprint = dialogueFont.render(FlowerPotDialogue[2], True, (255, 255, 255))
+                        toprint = dialogueFont.render(Policeman_Before_Bush_Dialogue[2], True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
-                        
+
                     if temporaryProgress == 3:
                         checkanykey()
                         oftenusedD1()
-                        toprint = dialogueFont.render(FlowerPotDialogue[3], True, (255, 255, 255))
+                        toprint = dialogueFont.render(Policeman_Before_Bush_Dialogue[3], True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
-                    
+
                     if temporaryProgress == 4:
                         checkanykey()
                         oftenusedD1()
-                        toprint = dialogueFont.render(FlowerPotDialogue[4], True, (255, 255, 255))
+                        toprint = dialogueFont.render(Policeman_Before_Bush_Dialogue[4], True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
-                    
-                    if temporaryProgress == 5:
-                        checkanykey()
-                        oftenusedD1()
-                        toprint = dialogueFont.render(FlowerPotDialogue[5], True, (255, 255, 255))
-                        screen.blit(toprint, (250, 500))
-                    if temporaryProgress == 6:
-                        checkanykey()
-                        oftenusedD1()
-                        toprint = dialogueFont.render(FlowerPotDialogue[6], True, (255, 255, 255))
-                        screen.blit(toprint, (250, 500))
-
-                    if temporaryProgress == 7:
-                        showFlowerPot = False  # On arrete d'afficher le pot de fleur car il a ete recupere pour analyse.
                         tempProgress = 0  # On remet tout les parametres requis afin de retourner a la phase d'enquete.
-                        taklingabout = False
-                        bushes = False
-                        kbushes = True
+                        talkingabout = False
+                        policeman_beforebush = False
+                        kpoliceman_beforebush = True
                         progress = 5
                         show_walk = True
                         temProgress = False
+
+                elif policeman_afterbush == True and kbushes == True:
+                    # Talking to policeman
+                    print("talking to policeman")
+                    if temporaryProgress == 0:
+                        checkanykey()  # on vérifie si une touche est enfoncée
+                        oftenusedD1()  # On met l'ecran de dialogue
+                        toprint = dialogueFont.render(Policeman_After_Bush_Dialogue[0], True, (
+                            255, 255, 255))  # On affiche les dialogue de la meme maniere que dans le reste du jeu.
+                        screen.blit(toprint, (250, 500))
+
+                    if temporaryProgress == 1:  # Pareil qu'au dessus mais juste avec un indice plus grand.
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(
+                            Policeman_After_Bush_Dialogue[1], True,
+                            (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+
+                    if temporaryProgress == 2:
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(Policeman_After_Bush_Dialogue[2], True, (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+
+                    if temporaryProgress == 3:
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(Policeman_After_Bush_Dialogue[3], True, (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+
+                    if temporaryProgress == 4:
+                        checkanykey()
+                        oftenusedD1()
+                        toprint = dialogueFont.render(Policeman_After_Bush_Dialogue[4], True, (255, 255, 255))
+                        screen.blit(toprint, (250, 500))
+                        tempProgress = 0  # On remet tout les parametres requis afin de retourner a la phase d'enquete.
+                        talkingabout = False
+                        policeman_afterbush = False
+                        kpoliceman_afterbush = True
+                        progress = 5
+                        show_walk = True
+                        temProgress = False
+
+
         if progress > 10:
             kbushes= True
             progress=10
             temProgress = False
             show_walk = True
-            Repeat=False
+            repeat_flower=False
+            repeat_stopsign = False
+            repeat_policeman_afterbush = False
+            repeat_policeman_beforebush = False
             
             
