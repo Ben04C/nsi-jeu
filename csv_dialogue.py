@@ -14,7 +14,7 @@ def dialogue():
 
 
     with open('assets/Dialogues/MainDialogues.csv') as csvfile: #We open the csv file with the dialogues
-        reader = csv.reader(csvfile, delimiter=';')
+        reader = csv.reader(csvfile, delimiter=',')
         for item in reader:
             MainDialogues.append(item) #We add every item from the list into a list
 
