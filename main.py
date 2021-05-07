@@ -241,9 +241,12 @@ while running:
             print("i'm trying honest")
             inventory = True
             screen.blit(inventaire, (320, 40))
-            if inventory == True and event.key == K_TAB:
-                inventory = False
             pygame.display.update()
+
+        if inventory == True and event.key == K_TAB:
+            inventory = False
+            pygame.display.update()
+        pygame.display.update()
 
 
     else:
