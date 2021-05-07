@@ -78,6 +78,7 @@ crimeSceneBG = pygame.image.load("assets/backgrounds/Game_First_Scene_bigger_res
 textbox = pygame.image.load("assets/UI/textbox_full_res.png").convert_alpha()
 inventaire = pygame.image.load("assets/UI/inventory.png").convert()
 
+
 # Flowers:
 flowerPot1 = pygame.image.load("assets/backgrounds/flower_pot_1.png").convert_alpha()
 flowerPot2 = pygame.image.load("assets/backgrounds/flower_pot_2.png").convert_alpha()
