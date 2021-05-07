@@ -429,17 +429,6 @@ while running:
                     screen.blit(toprint, (523, 417))
                     stopsign = True
                     pressE = True
-                
-                elif playerX <= 1100 and playerX >= 1080:
-
-                    toprint = dialogueFont.render("press e to talk", True, (255, 255, 255))
-                    pressE = True
-                    policeman = True
-                    screen.blit(toprint, (523, 417))
-                    toprint = dialogueFont.render("press e to talk", True, (255, 255, 255))
-                    pressEprint = True
-                    screen.blit(toprint, (523, 417))
-                    pygame.display.update()
 
                     # Ajouter les différents éléments à inspecter ici.
 
@@ -521,43 +510,34 @@ while running:
                     screen.blit(toprint, (523, 417))
                     pygame.display.update()
 
-                elif playerX <= 210 and playerX >= 20 and Repeat == True:   #si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le pot de fleur, faire:
-                    toprint = dialogueFont.render("press e to talk", True, (255, 255, 255))
-                    screen.blit(toprint, (523, 417))
-                    stopsign = True
-                    pressE = True
-
-                    # Ajouter les différents éléments à inspecter ici.
-
                 else:
                     pygame.display.update()
 
-                TalkingAbout = False
-                if pressE == True:
+                talkingabout_policeman = False
+                if pressE_policeman == True:
                     print("can press e")
                     keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
-                    if keys[pygame.K_e] and Repeat == True:  # Si la valeur de la clé K_RIGHT est vraie:
+                    if keys[pygame.K_e]:  # Si la valeur de la clé K_RIGHT est vraie:
                         print("e.click")
                         # playerX = 5
-                        TalkingAbout = True
-                        Repeat = False  #une fois qu'on a inspecté le pot de fleur une première fois, Repeat = False comme ça on ne peut pas l'inspecter une deuxième fois
-                        if bushes == True:  # On vérifie quel dialogue lancer ici le dialogue bushes
+                        talkingabout_policeman = True
+                        if policeman == True:  # On vérifie quel dialogue lancer ici le dialogue policeman
                             print("trying to display")
 
                             temporaryProgress = 0
                             show_walk = False
-                            taklingabout = True
+                            talkingabout_policeman = True
 
-            if taklingabout:  # Le joueur inspecte le pot de fleurs et un dialoque se lance
+            if talkingabout_policeman:  # Le joueur parle au policier et un dialoque se lance
                 print("hello")
                 oftenusedD1()
                 temProgress = True
-                if bushes == True:  # On lance le lialogue bushes la structure ci-dessous est tres similaire a celle au premier dialogue.
+                if policeman == True:  # On lance le lialogue bushes la structure ci-dessous est tres similaire a celle au premier dialogue.
 
                     if temporaryProgress == 0:
                         checkanykey()  # on vérifie si une touche est enfoncée
                         oftenusedD1()  # On met l'ecran de dialogue
-                        toprint = dialogueFont.render("Nice Bushes", True, (
+                        toprint = dialogueFont.render("Good evening, Sir.", True, (
                         255, 255, 255))  # On affiche les dialogue de la meme maniere que dans le reste du jeu.
                         screen.blit(toprint, (250, 500))
 
@@ -565,22 +545,21 @@ while running:
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(
-                            "This flower pot seems to have a crack, Detective could we analyse these bushes", True,
+                            "I have found a bush while inspecting my surroundings.", True,
                             (255, 255, 255))
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 2:
                         checkanykey()
                         oftenusedD1()
-                        toprint = dialogueFont.render("Right away sir", True, (255, 255, 255))
+                        toprint = dialogueFont.render("Policeman: Good to know.", True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 3:
-                        showFlowerPot = False  # On arrete d'afficher le pot de fleur car il a ete recupere pour analyse.
                         tempProgress = 0  # On remet tout les parametres requis afin de retourner a la phase d'enquete.
-                        taklingabout = False
-                        bushes = False
-                        kbushes = True
+                        talkingabout_policeman = False
+                        policeman = False
+                        kpoliceman = True
                         progress = 5
                         show_walk = True
                         temProgress = False
