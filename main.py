@@ -235,7 +235,7 @@ while running:
             print("croix")
     clock.tick(30)  # FPS
 
-    print(temporaryProgress)
+    print(temporaryProgress, temProgress)
     if event.type == KEYDOWN:
         if inventory == False and event.key == K_TAB:
             print("i'm trying honest")
@@ -522,9 +522,11 @@ while running:
                 print("hello")
                 oftenusedD1()
                 temProgress = True
+                progress=10
                 if bushes == True:  # On lance le lialogue bushes la structure ci-dessous est tres similaire a celle au premier dialogue.
 
                     if temporaryProgress == 0:
+                        temProgress = True
                         checkanykey()  # on vérifie si une touche est enfoncée
                         oftenusedD1()  # On met l'ecran de dialogue
                         toprint = dialogueFont.render(FlowerPotDialogue[0], True, (
@@ -532,6 +534,7 @@ while running:
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 1:#Pareil qu'au dessus mais juste avec un indice plus grand.
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(
@@ -540,24 +543,28 @@ while running:
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 2:
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(FlowerPotDialogue[2], True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
                         
                     if temporaryProgress == 3:
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(FlowerPotDialogue[3], True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
                     
                     if temporaryProgress == 4:
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(FlowerPotDialogue[4], True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
                     
                     if temporaryProgress == 5:
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(FlowerPotDialogue[5], True, (255, 255, 255))
@@ -567,7 +574,7 @@ while running:
                         talkingabout = False
                         bushes = False
                         kbushes = True
-                        progress = 5
+                        progress = 10
                         show_walk = True
                         temProgress = False
                         
@@ -575,6 +582,7 @@ while running:
                     #Inspecting the signpost
                     print("inspecting sign")
                     if temporaryProgress == 0:
+                        temProgress = True
                         checkanykey()  # on vérifie si une touche est enfoncée
                         oftenusedD1()  # On met l'ecran de dialogue
                         toprint = dialogueFont.render(StopSignDialogue[0], True, (
@@ -582,6 +590,7 @@ while running:
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 1:#Pareil qu'au dessus mais juste avec un indice plus grand.
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(
@@ -592,7 +601,7 @@ while running:
                         talkingabout = False
                         stopsign = False
                         kstopsign = True
-                        progress = 5
+                        progress = 10
                         show_walk = True
                         temProgress = False
 
@@ -600,6 +609,7 @@ while running:
                     # Talking to policeman
                     print("talking to policeman")
                     if temporaryProgress == 0:
+                        temProgress = True
                         checkanykey()  # on vérifie si une touche est enfoncée
                         oftenusedD1()  # On met l'ecran de dialogue
                         toprint = dialogueFont.render(Policeman_Before_Bush_Dialogue[0], True, (
@@ -607,6 +617,7 @@ while running:
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 1:  # Pareil qu'au dessus mais juste avec un indice plus grand.
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(
@@ -615,18 +626,21 @@ while running:
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 2:
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(Policeman_Before_Bush_Dialogue[2], True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 3:
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(Policeman_Before_Bush_Dialogue[3], True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 4:
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(Policeman_Before_Bush_Dialogue[4], True, (255, 255, 255))
@@ -635,7 +649,7 @@ while running:
                         talkingabout = False
                         policeman_beforebush = False
                         kpoliceman_beforebush = True
-                        progress = 5
+                        progress = 10
                         show_walk = True
                         temProgress = False
 
@@ -643,6 +657,7 @@ while running:
                     # Talking to policeman
                     print("talking to policeman")
                     if temporaryProgress == 0:
+                        temProgress = True
                         checkanykey()  # on vérifie si une touche est enfoncée
                         oftenusedD1()  # On met l'ecran de dialogue
                         toprint = dialogueFont.render(Policeman_After_Bush_Dialogue[0], True, (
@@ -650,6 +665,7 @@ while running:
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 1:  # Pareil qu'au dessus mais juste avec un indice plus grand.
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(
@@ -658,18 +674,21 @@ while running:
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 2:
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(Policeman_After_Bush_Dialogue[2], True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 3:
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(Policeman_After_Bush_Dialogue[3], True, (255, 255, 255))
                         screen.blit(toprint, (250, 500))
 
                     if temporaryProgress == 4:
+                        temProgress = True
                         checkanykey()
                         oftenusedD1()
                         toprint = dialogueFont.render(Policeman_After_Bush_Dialogue[4], True, (255, 255, 255))
@@ -678,7 +697,7 @@ while running:
                         talkingabout = False
                         policeman_afterbush = False
                         kpoliceman_afterbush = True
-                        progress = 5
+                        progress = 10
                         show_walk = True
                         temProgress = False
 
