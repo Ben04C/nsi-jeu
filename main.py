@@ -235,7 +235,6 @@ while running:
             print("croix")
     clock.tick(30)  # FPS
 
-    print(temporaryProgress, temProgress)
     if event.type == KEYDOWN:
         if inventory == False and event.key == K_TAB:
             print("i'm trying honest")
@@ -365,7 +364,6 @@ while running:
                 if show_walk:
                     walking_function()
                     Mouse_x, Mouse_y = pygame.mouse.get_pos()
-                    print(Mouse_x, Mouse_y)
 
                     if animateWalking == True:  # On verifie s'il faut animer le joueur else il sera a l'arret.
                         if walkingRight == True:  # On verifie dans quel sens il faut s'orrienter.
@@ -415,7 +413,6 @@ while running:
 
                 pressE = False
 
-                print("player x=", playerX)
                 if playerX <= 670 and playerX >= 517 and repeat_flower == True:   #si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le pot de fleur, faire:
 
                     toprint = dialogueFont.render("press e to inspect", True, (255, 255, 255))
@@ -476,7 +473,6 @@ while running:
                 TalkingAbout = False
                 if pressE == True:
                     print("can press e")
-                    print(policeman_beforebush)
                     keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
                     if keys[pygame.K_e] and repeat_stopsign == True:  # Si la valeur de la clé K_RIGHT est vraie:
                         print("e.click")
@@ -519,7 +515,6 @@ while running:
 
 
             if talkingabout:  # Le joueur inspecte le pot de fleurs et un dialoque se lance
-                print("hello")
                 oftenusedD1()
                 temProgress = True
                 progress=10
