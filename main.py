@@ -427,11 +427,21 @@ while running:
                     screen.blit(toprint, (523, 417))
                     pygame.display.update()
 
+                    stopsign = False
+                    policeman_beforebush = False
+                    policeman_afterbush = False
+
+
                 elif playerX <= 210 and playerX >= 20 and repeat_stopsign == True:   #si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le panneau, faire:
                     toprint = dialogueFont.render("press e to inspect", True, (255, 255, 255))
                     screen.blit(toprint, (200, 417))
                     stopsign = True
                     pressE = True
+
+                    bushes = False
+                    policeman_beforebush = False
+                    policeman_afterbush = False
+
                     pygame.display.update()
 
                 elif playerX <= 1149 and playerX >= 1010 and repeat_policeman_beforebush == True:  # si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le panneau, faire:
@@ -439,6 +449,11 @@ while running:
                     screen.blit(toprint, (1010, 417))
                     policeman_beforebush = True
                     pressE = True
+
+                    bushes = False
+                    stopsign = False
+                    policeman_afterbush = False
+
                     pygame.display.update()
 
                 elif playerX <= 1149 and playerX >= 1010 and repeat_policeman_afterbush == True and kbushes == True:  # si le joueur est dans cette zone, et que c'est la première fois qu'on inspecte le panneau, faire:
@@ -446,6 +461,11 @@ while running:
                     screen.blit(toprint, (1010, 417))
                     policeman_afterbush = True
                     pressE = True
+
+                    bushes = False
+                    stopsign = False
+                    policeman_beforebush = False
+
                     pygame.display.update()
 
                 # Ajouter les différents éléments à inspecter ici.
@@ -456,6 +476,7 @@ while running:
                 TalkingAbout = False
                 if pressE == True:
                     print("can press e")
+                    print(policeman_beforebush)
                     keys = pygame.key.get_pressed()  # on fait un dictionnaire avec les valeurs de pygame.keys.get_pressed()
                     if keys[pygame.K_e] and repeat_stopsign == True:  # Si la valeur de la clé K_RIGHT est vraie:
                         print("e.click")
